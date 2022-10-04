@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UE.CP.DentalCenter.API", "U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UE.CP.DentalCenter.DOMAIN", "UE.CP.DentalCenter.DOMAIN\UE.CP.DentalCenter.DOMAIN.csproj", "{36030562-CEF5-4662-B764-BB51882B6F44}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "UE.CP.DentalCenter.Database", "UE.CP.DentalCenter.Database\UE.CP.DentalCenter.Database.sqlproj", "{95E38E9F-2E16-4430-B4D9-AE328459B0BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,12 @@ Global
 		{36030562-CEF5-4662-B764-BB51882B6F44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36030562-CEF5-4662-B764-BB51882B6F44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36030562-CEF5-4662-B764-BB51882B6F44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95E38E9F-2E16-4430-B4D9-AE328459B0BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95E38E9F-2E16-4430-B4D9-AE328459B0BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95E38E9F-2E16-4430-B4D9-AE328459B0BB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{95E38E9F-2E16-4430-B4D9-AE328459B0BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95E38E9F-2E16-4430-B4D9-AE328459B0BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95E38E9F-2E16-4430-B4D9-AE328459B0BB}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
