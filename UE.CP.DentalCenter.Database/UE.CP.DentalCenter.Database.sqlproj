@@ -63,5 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Usuario.sql" />
+    <Build Include="dbo\Tables\Tratamiento.sql" />
+    <Build Include="dbo\Tables\Receta.sql" />
+    <Build Include="dbo\Tables\OdontogramaObservacion.sql" />
+    <Build Include="dbo\Tables\Odontograma.sql" />
+    <Build Include="dbo\Tables\HistoriaClinica.sql" />
+    <Build Include="dbo\Tables\Cita.sql" />
+    <Build Include="dbo\Tables\Archivo.sql" />
   </ItemGroup>
 </Project>
