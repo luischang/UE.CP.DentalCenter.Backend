@@ -7,9 +7,9 @@
     [Correo]          NVARCHAR (100) NULL,
     [Direccion]       NVARCHAR (100) NULL,
     [Teléfono]        NVARCHAR (100) NULL,
-    [TipoUsuario]     NVARCHAR (50)  NULL,
+    [TipoUsuario]     CHAR(1)  NULL,
     [Contrasena]      NVARCHAR (100) NULL,
-    [Estado]          NCHAR (5)      NULL,
+    [Estado]          CHAR      NULL,
     CONSTRAINT [PK_Usuario] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
