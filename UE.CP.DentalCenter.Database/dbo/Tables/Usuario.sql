@@ -12,4 +12,3 @@
     [Estado] NCHAR(5) NULL, 
     CONSTRAINT [PK_Usuario] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
-
