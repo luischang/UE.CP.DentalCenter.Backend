@@ -1,4 +1,5 @@
-﻿using UE.CP.DentalCenter.DOMAIN.Core.Entities;
+﻿using UE.CP.DentalCenter.DOMAIN.Core.DTOs;
+using UE.CP.DentalCenter.DOMAIN.Core.Entities;
 
 namespace UE.CP.DentalCenter.DOMAIN.Core.Interfaces
 {

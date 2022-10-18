@@ -1,6 +1,8 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using UE.CP.DentalCenter.DOMAIN.Core.Interfaces;
 using UE.CP.DentalCenter.DOMAIN.Infrastructure.Data;
+using UE.CP.DentalCenter.DOMAIN.Infrastructure.Mapping;
 using UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,14 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("DevConnection");
 builder.Services.AddDbContext<DentalCenterContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddTransient<IPacienteRepository, PacienteRepository>();
+
+var config = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new AutomapperProfile());
+});
+var mapper = config.CreateMapper();
+builder.Services.AddSingleton(mapper);
+
 
 var app = builder.Build();
 

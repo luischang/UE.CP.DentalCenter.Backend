@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UE.CP.DentalCenter.DOMAIN.Core.DTOs;
 using UE.CP.DentalCenter.DOMAIN.Core.Entities;
 using UE.CP.DentalCenter.DOMAIN.Core.Interfaces;
 
@@ -10,15 +12,18 @@ namespace UE.CP.DentalCenter.API.Controllers
     public class PacienteController : ControllerBase
     {
         private readonly IPacienteRepository _pacienteRepository;
-        public PacienteController(IPacienteRepository pacienteRepository)
+        private readonly IMapper _mapper;
+        public PacienteController(IPacienteRepository pacienteRepository, IMapper mapper)
         {
             _pacienteRepository = pacienteRepository;
+            _mapper = mapper;
         }
         [HttpGet("{frecuente}")]
         public async Task<IActionResult> GetPacienteByFrec()
         {
             var pacientes = await _pacienteRepository.GetPacientes();
-            return Ok(pacientes);
+            var pacienteList = _mapper.Map<List<PacienteFrecuenteDTO>>(pacientes);
+            return Ok(pacienteList);
         }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]Paciente paciente)
