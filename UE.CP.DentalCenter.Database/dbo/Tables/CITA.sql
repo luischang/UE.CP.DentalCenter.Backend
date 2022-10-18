@@ -3,7 +3,7 @@
 	[idCita] INT NOT NULL ,
 	[idPaciente] int,
 	[idMedico] int,
-	[estado] NVARCHAR,
+	[estado] NVARCHAR(30),
 	[fecha] date,
 	CONSTRAINT [PK_CITA] PRIMARY KEY CLUSTERED ([idCita] ASC), 
     CONSTRAINT [FK_CITA_PACIENTE] FOREIGN KEY ([idPaciente]) REFERENCES [PACIENTE]([idPaciente]), 
