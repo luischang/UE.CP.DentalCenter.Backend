@@ -1,10 +1,10 @@
 ﻿CREATE TABLE [dbo].[DET_RECETA_MEDICA]
 (
-	[idDetRecetaMedica] INT ,
+	[idRecetaMedica] int,
 	[idMedicamento] INT,
-	[cantidad] INT,
+	[dosis] float,
+	[unidadMedida] NVARCHAR(10),
 	[descripcion] VARCHAR(20),
-	[precioTotal] float,
-	CONSTRAINT [PK_DET_RECETA_MEDICA] PRIMARY KEY CLUSTERED ([idDetRecetaMedica] ASC), 
-    CONSTRAINT [FK_DET_RECETA_MEDICA_MEDICAMENTO] FOREIGN KEY ([idMedicamento]) REFERENCES [MEDICAMENTO]([idMedicamento]),
+    CONSTRAINT [FK_DET_RECETA_MEDICA_MEDICAMENTO] FOREIGN KEY ([idMedicamento]) REFERENCES [MEDICAMENTO]([idMedicamento]), 
+    CONSTRAINT [FK_DET_RECETA_MEDICA_CAB_RECETA_MEDICA] FOREIGN KEY ([idRecetaMedica]) REFERENCES [CAB_RECETA_MEDICA]([idRecetaMedica]),
 )

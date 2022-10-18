@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[DET_MEDICO](
-    [idDetMedico]   INT,
-    [especialidad]  NVARCHAR (20),
-    CONSTRAINT [PK_DET_MEDICO] PRIMARY KEY CLUSTERED ([idDetMedico] ASC)
+    [idMedico]   INT,
+    [especialidad]  NVARCHAR (20), 
+    CONSTRAINT [FK_DET_MEDICO_CAB_MEDICO] FOREIGN KEY ([idMedico]) REFERENCES [CAB_MEDICO]([idMedico]),
 );

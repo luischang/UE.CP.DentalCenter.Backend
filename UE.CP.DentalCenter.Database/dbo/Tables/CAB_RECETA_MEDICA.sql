@@ -1,10 +1,8 @@
 ﻿CREATE TABLE [dbo].[CAB_RECETA_MEDICA]
 (
 	[idRecetaMedica] INT NOT NULL ,
-	[idMedicamento] INT,
-	[cantidad] INT,
-	[descripcion] NVARCHAR(40),
-	CONSTRAINT [PK_CAB_RECETA_MEDICA] PRIMARY KEY CLUSTERED ([idRecetaMedica] ASC), 
-    CONSTRAINT [FK_CAB_RECETA_MEDICA_MEDICAMENTO] FOREIGN KEY ([idMedicamento]) REFERENCES [MEDICAMENTO]([idMedicamento]),
+	[nombreDeClinica] NVARCHAR(30),
+	[fecha] date,
+	CONSTRAINT [PK_CAB_RECETA_MEDICA] PRIMARY KEY CLUSTERED ([idRecetaMedica] ASC) 
 
 )

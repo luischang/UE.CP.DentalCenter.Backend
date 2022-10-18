@@ -74,5 +74,8 @@
     <Build Include="dbo\Tables\PERSONAL_ADM.sql" />
     <Build Include="dbo\Tables\DET_HISTORIA_MEDICA.sql" />
     <Build Include="dbo\Tables\CAB_HISTORIA_MEDICA.sql" />
+    <Build Include="dbo\Tables\HORARIO_DISPONIBLE.sql" />
+    <Build Include="dbo\Tables\CAB_FACTURA.sql" />
+    <Build Include="dbo\Tables\DET_FACTURA.sql" />
   </ItemGroup>
 </Project>

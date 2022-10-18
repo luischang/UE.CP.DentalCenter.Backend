@@ -7,5 +7,6 @@
 	[fechaDeNac] date,
 	[telefono] NVARCHAR(18),
 	[correo] NVARCHAR(40),
+	[frecuente] bit,
 	CONSTRAINT [PK_PACIENTE] PRIMARY KEY CLUSTERED ([idPaciente] ASC),
 )

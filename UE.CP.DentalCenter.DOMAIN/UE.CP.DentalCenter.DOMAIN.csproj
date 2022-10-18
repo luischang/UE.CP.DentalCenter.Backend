@@ -12,9 +12,7 @@
     <Folder Include="Core\Interfaces\" />
     <Folder Include="Core\Interfaces\" />
     <Folder Include="Infrastructure\Data\" />
-    <Folder Include="Infrastructure\Data\" />
     <Folder Include="Infrastructure\Mapping\" />
-    <Folder Include="Infrastructure\Repositories\" />
     <Folder Include="Infrastructure\Repositories\" />
   </ItemGroup>
 
