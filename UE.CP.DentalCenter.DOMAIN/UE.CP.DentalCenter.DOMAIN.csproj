@@ -7,13 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Core\DTOs\" />
-    <Folder Include="Core\Entities\" />
-    <Folder Include="Core\Interfaces\" />
-    <Folder Include="Core\Interfaces\" />
     <Folder Include="Infrastructure\Data\" />
     <Folder Include="Infrastructure\Mapping\" />
-    <Folder Include="Infrastructure\Repositories\" />
   </ItemGroup>
 
   <ItemGroup>
