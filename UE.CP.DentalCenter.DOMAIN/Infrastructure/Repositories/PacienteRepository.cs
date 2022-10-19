@@ -22,10 +22,10 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
             var pacientes = await _context.Paciente.ToListAsync();
             return pacientes;
         }
-        public async Task<Paciente> GetPacienteByFrec(bool frec)//DevolverPacientePorBooleanFrecuente
+        public async Task<IEnumerable<Paciente>> GetPacienteByFrec(bool frec)//DevolverPacientePorBooleanFrecuente
 
         {
-            var paciente = await _context.Paciente.Where(x => x.Frecuente == frec).FirstOrDefaultAsync();
+            var paciente = await _context.Paciente.Where(x => x.Frecuente == frec).ToListAsync();
             if (paciente == null)
                 throw new Exception("Paciente no encontrado");
             return paciente;

@@ -18,11 +18,13 @@ namespace UE.CP.DentalCenter.API.Controllers
             _pacienteRepository = pacienteRepository;
             _mapper = mapper;
         }
-        [HttpGet("{frecuente}")]
-        public async Task<IActionResult> GetPacienteByFrec()
+        [HttpGet("frecuente")]
+        public async Task<IActionResult> GetPacienteByFrec(bool frec)
         {
-            var pacientes = await _pacienteRepository.GetPacientes();
+            var pacientes = await _pacienteRepository.GetPacienteByFrec(frec);
             var pacienteList = _mapper.Map<List<PacienteFrecuenteDTO>>(pacientes);
+            if (pacientes == null)
+                return NotFound();
             return Ok(pacienteList);
         }
         [HttpPost]
