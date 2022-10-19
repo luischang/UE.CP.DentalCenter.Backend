@@ -18,6 +18,7 @@ var connectionString = builder.Configuration.GetConnectionString("DevConnection"
 builder.Services.AddDbContext<DentalCenterContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddTransient<IPacienteRepository, PacienteRepository>();
 builder.Services.AddTransient<ITratamientoRepository, TratamientoRepository>();
+builder.Services.AddTransient<ICabMedicoRepository, CabMedicoRepository>();
 
 var config = new MapperConfiguration(cfg =>
 {
