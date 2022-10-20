@@ -19,6 +19,7 @@ builder.Services.AddDbContext<DentalCenterContext>(options => options.UseSqlServ
 builder.Services.AddTransient<IPacienteRepository, PacienteRepository>();
 builder.Services.AddTransient<ITratamientoRepository, TratamientoRepository>();
 builder.Services.AddTransient<ICabMedicoRepository, CabMedicoRepository>();
+builder.Services.AddTransient<IHorarioDisponibleRepository, HorarioDisponibleRepository>();
 
 var config = new MapperConfiguration(cfg =>
 {

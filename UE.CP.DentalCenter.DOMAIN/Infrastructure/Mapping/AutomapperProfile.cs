@@ -19,6 +19,8 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Mapping
             CreateMap<PacienteFrecuenteDTO, Paciente>();
             CreateMap<CabMedico, CabMedicoParaFiltroPacnteDTO>();
             CreateMap<CabMedicoParaFiltroPacnteDTO, CabMedico>();
+            CreateMap<HorarioDisponible,HorarioDisponibleDTO>();
+            CreateMap<HorarioDisponibleDTO, HorarioDisponible>();
         }
     }
 }

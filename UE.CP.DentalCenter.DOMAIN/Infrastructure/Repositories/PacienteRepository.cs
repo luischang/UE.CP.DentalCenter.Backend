@@ -23,7 +23,6 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
             return pacientes;
         }
         public async Task<IEnumerable<Paciente>> GetPacienteByFrec(bool frec)//DevolverPacientePorBooleanFrecuente
-
         {
             var paciente = await _context.Paciente.Where(x => x.Frecuente == frec).ToListAsync();
             if (paciente == null)
