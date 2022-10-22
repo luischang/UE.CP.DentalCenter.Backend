@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UE.CP.DentalCenter.DOMAIN.Core.Entities;
 using UE.CP.DentalCenter.DOMAIN.Core.Interfaces;
 using UE.CP.DentalCenter.DOMAIN.Infrastructure.Data;
+using UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories;
 
 namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
 {
@@ -36,5 +37,28 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
             var countRows = await _context.SaveChangesAsync();
             return countRows > 0;
         }
+
+        
+
+        public async Task<Paciente> getPacienteByNombre(string nombre)
+        {
+            var paciente = await _context.Paciente.Where(X => X.Nombre == nombre).FirstOrDefaultAsync();
+            /*if (customer == null)
+            {
+                throw new Exception("Customer not found");
+            }*/
+            return paciente;
+        }
+
+        public async Task<Paciente> getPacienteByFecha(DateTime fecha)
+        {
+            var paciente = await _context.Paciente.Where(X => X.FechaDeNac == fecha).FirstOrDefaultAsync();
+            /*if (customer == null)
+            {
+                throw new Exception("Customer not found");
+            }*/
+            return paciente;
+        }
+
     }
 }

@@ -12,8 +12,8 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
 {
     public class CabMedicoRepository : ICabMedicoRepository
     {
-        private readonly DentalCenterContext _context;
-        public CabMedicoRepository(DentalCenterContext context)
+        private readonly Data.DentalCenterContext _context;
+        public CabMedicoRepository(Data.DentalCenterContext context)
         {
             _context = context;
         }

@@ -28,12 +28,49 @@ namespace UE.CP.DentalCenter.API.Controllers
             return Ok(pacienteList);
         }
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody]Paciente paciente)
+        public async Task<IActionResult> Create([FromBody]PacienteDTO paciente)
         {
-            var result = await _pacienteRepository.Insert(paciente);
+            Paciente pacienteF = _mapper.Map<Paciente>(paciente);
+
+            var result = await _pacienteRepository.Insert(pacienteF);
+            
             if(!result)
                 return BadRequest();
             return Ok(result);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+
+            var paciente = await _pacienteRepository.GetPacientes();
+
+            var pacienteList = _mapper.Map<List<PacienteDTO>>(paciente);
+
+
+            return Ok(pacienteList);
+        }
+
+        [HttpGet("{nombre}")]
+        public async Task<IActionResult> GetPacienteNombre(string nombre)
+        {
+            var paciente = await _pacienteRepository.getPacienteByNombre(nombre);
+            if (paciente == null)
+            {
+                return NotFound();
+            }
+            var pacienteList = _mapper.Map<PacienteDTO>(paciente);
+            return Ok(pacienteList);
+        }
+
+
+        [HttpGet("Fecha")]
+        public async Task<IActionResult> GetPacienteByFech(DateTime fecha)
+        {
+            var pacientes = await _pacienteRepository.getPacienteByFecha(fecha);
+            var pacienteL = _mapper.Map<PacienteDTO>(pacientes);
+            return Ok(pacienteL);
+        }
+
     }
 }

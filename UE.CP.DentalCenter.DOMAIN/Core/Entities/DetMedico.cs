@@ -5,9 +5,14 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Entities
 {
     public partial class DetMedico
     {
-        public int? IdMedico { get; set; }
-        public string? Especialidad { get; set; }
+        public DetMedico()
+        {
+            CabMedico = new HashSet<CabMedico>();
+        }
 
-        public virtual CabMedico? IdMedicoNavigation { get; set; }
+        public int IdDetMedico { get; set; }
+        public string Especialidad { get; set; } = null!;
+
+        public virtual ICollection<CabMedico> CabMedico { get; set; }
     }
 }

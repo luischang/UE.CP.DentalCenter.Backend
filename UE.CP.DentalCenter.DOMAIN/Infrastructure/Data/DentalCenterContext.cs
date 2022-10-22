@@ -36,8 +36,7 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=LAPTOP-UHECV48E;Database=DentalCenterV2;User=sa;Password=123456789");//CAMBIAR DE ACUERDO CON CADA CASO
+                optionsBuilder.UseSqlServer("Server = LAPTOP-UHECV48E; Database = DentalCenterV2; User = sa; Password = 123456789");
             }
         }
 
@@ -59,9 +58,16 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.Property(e => e.IdCita).HasColumnName("idCita");
 
+                entity.Property(e => e.IdDetFactura).HasColumnName("idDetFactura");
+
                 entity.Property(e => e.IdPaciente).HasColumnName("idPaciente");
 
                 entity.Property(e => e.PrecioTotal).HasColumnName("precioTotal");
+
+                entity.HasOne(d => d.IdDetFacturaNavigation)
+                    .WithMany(p => p.CabFactura)
+                    .HasForeignKey(d => d.IdDetFactura)
+                    .HasConstraintName("FK_DET_FACTURA");
             });
 
             modelBuilder.Entity<CabHistoriaMedica>(entity =>
@@ -79,7 +85,14 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
                     .HasColumnType("date")
                     .HasColumnName("fechaDeActualizacion");
 
+                entity.Property(e => e.IdDetHistoriaMedica).HasColumnName("idDetHistoriaMedica");
+
                 entity.Property(e => e.IdPaciente).HasColumnName("idPaciente");
+
+                entity.HasOne(d => d.IdDetHistoriaMedicaNavigation)
+                    .WithMany(p => p.CabHistoriaMedica)
+                    .HasForeignKey(d => d.IdDetHistoriaMedica)
+                    .HasConstraintName("FK_DET_HISTORIA_MEDICA");
 
                 entity.HasOne(d => d.IdPacienteNavigation)
                     .WithMany(p => p.CabHistoriaMedica)
@@ -105,9 +118,16 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
                     .HasMaxLength(10)
                     .HasColumnName("genero");
 
+                entity.Property(e => e.IdDetMedico).HasColumnName("idDetMedico");
+
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(20)
                     .HasColumnName("nombre");
+
+                entity.HasOne(d => d.IdDetMedicoNavigation)
+                    .WithMany(p => p.CabMedico)
+                    .HasForeignKey(d => d.IdDetMedico)
+                    .HasConstraintName("FK_CAB_MEDICO");
             });
 
             modelBuilder.Entity<CabRecetaMedica>(entity =>
@@ -124,9 +144,16 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
                     .HasColumnType("date")
                     .HasColumnName("fecha");
 
+                entity.Property(e => e.IdDetRecetaMedica).HasColumnName("idDetRecetaMedica");
+
                 entity.Property(e => e.NombreDeClinica)
                     .HasMaxLength(30)
                     .HasColumnName("nombreDeClinica");
+
+                entity.HasOne(d => d.IdDetRecetaMedicaNavigation)
+                    .WithMany(p => p.CabRecetaMedica)
+                    .HasForeignKey(d => d.IdDetRecetaMedica)
+                    .HasConstraintName("FK_CAB_RECETA_MEDICA");
             });
 
             modelBuilder.Entity<Cita>(entity =>
@@ -164,11 +191,13 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
             modelBuilder.Entity<DetFactura>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.IdDetFactura);
 
                 entity.ToTable("DET_FACTURA");
 
-                entity.Property(e => e.IdFactura).HasColumnName("idFactura");
+                entity.Property(e => e.IdDetFactura)
+                    .ValueGeneratedNever()
+                    .HasColumnName("idDetFactura");
 
                 entity.Property(e => e.IdRecetaMedica).HasColumnName("idRecetaMedica");
 
@@ -176,34 +205,30 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.Property(e => e.Precio).HasColumnName("precio");
 
-                entity.HasOne(d => d.IdFacturaNavigation)
-                    .WithMany()
-                    .HasForeignKey(d => d.IdFactura)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_DET_FACTURA_CAB_FACTURA");
-
                 entity.HasOne(d => d.IdRecetaMedicaNavigation)
-                    .WithMany()
+                    .WithMany(p => p.DetFactura)
                     .HasForeignKey(d => d.IdRecetaMedica)
                     .HasConstraintName("FK_DET_FACTURA_CAB_RECETA");
 
                 entity.HasOne(d => d.IdTratamientoNavigation)
-                    .WithMany()
+                    .WithMany(p => p.DetFactura)
                     .HasForeignKey(d => d.IdTratamiento)
                     .HasConstraintName("FK_DET_FACTURA_TRATAMIENTO");
             });
 
             modelBuilder.Entity<DetHistoriaMedica>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.IdDetHistoriaMedica);
 
                 entity.ToTable("DET_HISTORIA_MEDICA");
+
+                entity.Property(e => e.IdDetHistoriaMedica)
+                    .ValueGeneratedNever()
+                    .HasColumnName("idDetHistoriaMedica");
 
                 entity.Property(e => e.IdAsistente).HasColumnName("idAsistente");
 
                 entity.Property(e => e.IdCita).HasColumnName("idCita");
-
-                entity.Property(e => e.IdHistoriaMedica).HasColumnName("idHistoriaMedica");
 
                 entity.Property(e => e.IdMedico).HasColumnName("idMedico");
 
@@ -212,62 +237,63 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
                 entity.Property(e => e.IdTratamiento).HasColumnName("idTratamiento");
 
                 entity.HasOne(d => d.IdAsistenteNavigation)
-                    .WithMany()
+                    .WithMany(p => p.DetHistoriaMedica)
                     .HasForeignKey(d => d.IdAsistente)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DET_HISTORIA_MEDICA_PERSONAL_ADM");
 
                 entity.HasOne(d => d.IdCitaNavigation)
-                    .WithMany()
+                    .WithMany(p => p.DetHistoriaMedica)
                     .HasForeignKey(d => d.IdCita)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DET_HISTORIA_MEDICA_CITA");
 
-                entity.HasOne(d => d.IdHistoriaMedicaNavigation)
-                    .WithMany()
-                    .HasForeignKey(d => d.IdHistoriaMedica)
-                    .HasConstraintName("FK_DET_HISTORIA_MEDICA_CAB_HISTORIA_MEDICA");
-
                 entity.HasOne(d => d.IdMedicoNavigation)
-                    .WithMany()
+                    .WithMany(p => p.DetHistoriaMedica)
                     .HasForeignKey(d => d.IdMedico)
-                    .HasConstraintName("FK_DET_HISTORIA_MEDICA_CAB_MEDICO");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DET_HISTORIA_MEDICA_Medico");
 
                 entity.HasOne(d => d.IdRecetaMedicaNavigation)
-                    .WithMany()
+                    .WithMany(p => p.DetHistoriaMedica)
                     .HasForeignKey(d => d.IdRecetaMedica)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DET_HISTORIA_MEDICA_CAB_RECETA_MEDICA");
 
                 entity.HasOne(d => d.IdTratamientoNavigation)
-                    .WithMany()
+                    .WithMany(p => p.DetHistoriaMedica)
                     .HasForeignKey(d => d.IdTratamiento)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DET_HISTORIA_MEDICA_TRATAMIENTO");
             });
 
             modelBuilder.Entity<DetMedico>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.IdDetMedico);
 
                 entity.ToTable("DET_MEDICO");
+
+                entity.Property(e => e.IdDetMedico)
+                    .ValueGeneratedNever()
+                    .HasColumnName("idDetMedico");
 
                 entity.Property(e => e.Especialidad)
                     .HasMaxLength(20)
                     .HasColumnName("especialidad");
-
-                entity.Property(e => e.IdMedico).HasColumnName("idMedico");
-
-                entity.HasOne(d => d.IdMedicoNavigation)
-                    .WithMany()
-                    .HasForeignKey(d => d.IdMedico)
-                    .HasConstraintName("FK_DET_MEDICO_CAB_MEDICO");
             });
 
             modelBuilder.Entity<DetRecetaMedica>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.IdDetRecetaMedica);
 
                 entity.ToTable("DET_RECETA_MEDICA");
 
+                entity.Property(e => e.IdDetRecetaMedica)
+                    .ValueGeneratedNever()
+                    .HasColumnName("idDetRecetaMedica");
+
                 entity.Property(e => e.Descripcion)
-                    .HasMaxLength(20)
+                    .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("descripcion");
 
@@ -275,21 +301,14 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.Property(e => e.IdMedicamento).HasColumnName("idMedicamento");
 
-                entity.Property(e => e.IdRecetaMedica).HasColumnName("idRecetaMedica");
-
                 entity.Property(e => e.UnidadMedida)
                     .HasMaxLength(10)
                     .HasColumnName("unidadMedida");
 
                 entity.HasOne(d => d.IdMedicamentoNavigation)
-                    .WithMany()
+                    .WithMany(p => p.DetRecetaMedica)
                     .HasForeignKey(d => d.IdMedicamento)
                     .HasConstraintName("FK_DET_RECETA_MEDICA_MEDICAMENTO");
-
-                entity.HasOne(d => d.IdRecetaMedicaNavigation)
-                    .WithMany()
-                    .HasForeignKey(d => d.IdRecetaMedica)
-                    .HasConstraintName("FK_DET_RECETA_MEDICA_CAB_RECETA_MEDICA");
             });
 
             modelBuilder.Entity<HorarioDisponible>(entity =>
@@ -320,7 +339,7 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
             modelBuilder.Entity<Medicamento>(entity =>
             {
                 entity.HasKey(e => e.IdMedicamento)
-                    .HasName("PK__MEDICAME__42B24C581C149210");
+                    .HasName("PK__MEDICAME__42B24C5849B321BD");
 
                 entity.ToTable("MEDICAMENTO");
 

@@ -25,4 +25,5 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.DTOs
         public string? Correo { get; set; }
         public bool? Frecuente { get; set; }
     }
+
 }

@@ -12,8 +12,8 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
 {
     public class TratamientoRepository : ITratamientoRepository
     {
-        private readonly DentalCenterContext _context;
-        public TratamientoRepository(DentalCenterContext context)
+        private readonly Data.DentalCenterContext _context;
+        public TratamientoRepository(Data.DentalCenterContext context)
         {
             _context = context;
         }

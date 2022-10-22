@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using UE.CP.DentalCenter.DOMAIN.Core.DTO_s;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,24 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Mapping
             CreateMap<CabMedicoParaFiltroPacnteDTO, CabMedico>();
             CreateMap<HorarioDisponible,HorarioDisponibleDTO>();
             CreateMap<HorarioDisponibleDTO, HorarioDisponible>();
+            CreateMap<TratamientoDTO, Tratamiento>();
+            CreateMap<Tratamiento, TratamientoDTO>();
+            CreateMap<RecetaDTO, CabeceraRecetaDTO>();
+            CreateMap<CabeceraRecetaDTO, RecetaDTO>();
+            CreateMap<RecetaPostDTO, DetRecetaMedica>();
+            CreateMap<DetRecetaMedica, RecetaPostDTO>();
+            CreateMap<CabRecetaMedica, CabeceraRecetaPostDTO>();
+            CreateMap<CabeceraRecetaPostDTO, CabRecetaMedica>();
+            CreateMap<CabeceraHistoriaCliDTO, CabHistoriaMedica>();
+            CreateMap<CabHistoriaMedica, CabeceraHistoriaCliDTO>();
+            CreateMap<CabeceraHistoriaCliPostDTO, CabHistoriaMedica>();
+            CreateMap<CabHistoriaMedica, CabeceraHistoriaCliPostDTO>();
+            CreateMap<CitaDTO, Cita>();
+            CreateMap<Cita, CitaDTO>();
+            CreateMap<HistoriaMedicaDTO, DetHistoriaMedica>();
+            CreateMap<DetHistoriaMedica, HistoriaMedicaDTO>();
+            CreateMap<DetHistoriaMedica, DetHistoTratamientoDTO>();
+            CreateMap<DetHistoTratamientoDTO, DetHistoriaMedica>();
         }
     }
 }

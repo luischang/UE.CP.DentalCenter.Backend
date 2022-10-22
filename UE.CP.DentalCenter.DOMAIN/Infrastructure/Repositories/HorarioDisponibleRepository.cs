@@ -12,8 +12,8 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
 {
     public class HorarioDisponibleRepository : IHorarioDisponibleRepository
     {
-        private readonly DentalCenterContext _context;
-        public HorarioDisponibleRepository(DentalCenterContext context)
+        private readonly Data.DentalCenterContext _context;
+        public HorarioDisponibleRepository(Data.DentalCenterContext context)
         {
             _context = context;
         }

@@ -1,6 +1,8 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using UE.CP.DentalCenter.DOMAIN.Core.Interface;
 using UE.CP.DentalCenter.DOMAIN.Core.Interfaces;
+using UE.CP.DentalCenter.DOMAIN.Infraestructura.Repositories;
 using UE.CP.DentalCenter.DOMAIN.Infrastructure.Data;
 using UE.CP.DentalCenter.DOMAIN.Infrastructure.Mapping;
 using UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories;
@@ -20,6 +22,11 @@ builder.Services.AddTransient<IPacienteRepository, PacienteRepository>();
 builder.Services.AddTransient<ITratamientoRepository, TratamientoRepository>();
 builder.Services.AddTransient<ICabMedicoRepository, CabMedicoRepository>();
 builder.Services.AddTransient<IHorarioDisponibleRepository, HorarioDisponibleRepository>();
+
+builder.Services.AddTransient<IRecetaRepository, RecetaRepository>();
+builder.Services.AddTransient<IHistoriaMedicaRepository, HistoriaMedicaRepository>();
+builder.Services.AddTransient<ICitaRepository, CitaRepository>();
+
 
 var config = new MapperConfiguration(cfg =>
 {
