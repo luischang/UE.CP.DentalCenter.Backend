@@ -40,6 +40,10 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Mapping
             CreateMap<DetHistoriaMedica, HistoriaMedicaDTO>();
             CreateMap<DetHistoriaMedica, DetHistoTratamientoDTO>();
             CreateMap<DetHistoTratamientoDTO, DetHistoriaMedica>();
+            CreateMap<CabFactura, CabFacturaDTO>();
+            CreateMap<CabFacturaDTO, CabFactura>();
+            CreateMap<DetFactura, FacturaDTO>();
+            CreateMap<FacturaDTO, DetFactura>();
         }
     }
 }
