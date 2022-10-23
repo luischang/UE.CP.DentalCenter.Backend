@@ -8,6 +8,15 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.DTOs
 {
     public class HorarioDisponibleDTO
     {
+        public int IdHorarioDisponible { get; set; }
+        public int IdMedico { get; set; }
+        public DateTime? Dia { get; set; }
+        public TimeSpan? HoraIni { get; set; }
+        public TimeSpan? HoraFin { get; set; }
+        public int? Estado { get; set; }//0 es libre, 1 es ocupado
+    }
+    public class HorarioDisponiblePostDTO
+    {
         public int IdMedico { get; set; }
         public DateTime? Dia { get; set; }
         public TimeSpan? HoraIni { get; set; }

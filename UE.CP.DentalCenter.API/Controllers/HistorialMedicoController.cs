@@ -24,8 +24,8 @@ namespace DentalCentelBacked.Controllers
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> CrearCabHistoriaM(CabeceraHistoriaCliDTO cabeceraH)
+        [HttpPost("Cabecera")]
+        public async Task<IActionResult> CrearCabHistoriaM(CabeceraHistoriaCliPostDTO cabeceraH)
         {
             CabHistoriaMedica creceta = mapper.Map<CabHistoriaMedica>(cabeceraH);
             var result = await _historiaMedRepository.InsertCabHistoriaM(creceta);
@@ -38,7 +38,7 @@ namespace DentalCentelBacked.Controllers
         }
 
         [HttpPost("Detalle")]
-        public async Task<IActionResult> CrearDetHistoriaM(HistoriaMedicaDTO detH)
+        public async Task<IActionResult> CrearDetHistoriaM(DetHistoriaPostDTO detH)
         {
             DetHistoriaMedica detHis = mapper.Map<DetHistoriaMedica>(detH);
             var result = await _historiaMedRepository.InsertDetHistoriaM(detHis);
@@ -68,9 +68,9 @@ namespace DentalCentelBacked.Controllers
         public async Task<IActionResult> GetDetallByTratamiento(int id)
         {
             var DetHistoria = await _historiaMedRepository.GetHisMedicaWithIdTramiento(id);
-            
 
-            var DetalleHistoriaDTO = mapper.Map<List<DetHistoTratamientoDTO>>(DetHistoria);
+
+            var DetalleHistoriaDTO = mapper.Map<List<DetHistoTratamientoGetDTO>>(DetHistoria);
             if (DetalleHistoriaDTO == null)
                 return NotFound();
             return Ok(DetalleHistoriaDTO);
@@ -82,14 +82,10 @@ namespace DentalCentelBacked.Controllers
             var DetHistoria = await _historiaMedRepository.GetHisMedicaNombreTramiento(tr);
 
 
-            var DetalleHistoriaDTO = mapper.Map<List<DetHistoTratamientoDTO>>(DetHistoria);
+            var DetalleHistoriaDTO = mapper.Map<List<DetHistoTratamientoGetDTO>>(DetHistoria);
             if (DetalleHistoriaDTO == null)
                 return NotFound();
             return Ok(DetalleHistoriaDTO);
         }
-
-
-
-
     }
 }

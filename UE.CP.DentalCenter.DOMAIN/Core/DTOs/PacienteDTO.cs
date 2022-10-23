@@ -25,5 +25,15 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.DTOs
         public string? Correo { get; set; }
         public bool? Frecuente { get; set; }
     }
+    public class PacientePostDTO
+    {
+        public string? Nombre { get; set; }
+        public string? Apellido { get; set; }
+        public int? Dni { get; set; }
+        public DateTime? FechaDeNac { get; set; }
+        public string? Telefono { get; set; }
+        public string? Correo { get; set; }
+        public bool? Frecuente { get; set; }
+    }
 
 }

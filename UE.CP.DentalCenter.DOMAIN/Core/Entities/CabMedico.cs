@@ -9,16 +9,17 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Entities
         {
             Cita = new HashSet<Cita>();
             DetHistoriaMedica = new HashSet<DetHistoriaMedica>();
+            //Especialidad = new HashSet<Especialidad>();
         }
 
         public int IdMedico { get; set; }
-        public int? IdDetMedico { get; set; }
         public string? Nombre { get; set; }
         public string? Apellido { get; set; }
         public string? Genero { get; set; }
 
-        public virtual DetMedico? IdDetMedicoNavigation { get; set; }
         public virtual ICollection<Cita> Cita { get; set; }
+        //public virtual ICollection<Especialidad> Especialidad { get; set; }
+        //public virtual ICollection<HorarioDisponible> HorarioDisponible { get; set; }
         public virtual ICollection<DetHistoriaMedica> DetHistoriaMedica { get; set; }
     }
 }

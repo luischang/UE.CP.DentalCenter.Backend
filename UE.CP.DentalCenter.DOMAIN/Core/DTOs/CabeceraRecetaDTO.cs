@@ -9,7 +9,6 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.DTO_s
     public class CabeceraRecetaDTO
     {
         public int IdRecetaMedica { get; set; }
-        public int? IdDetRecetaMedica { get; set; }
         public string? NombreDeClinica { get; set; }
         public DateTime? Fecha { get; set; }
 
@@ -17,10 +16,8 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.DTO_s
     }
     public class CabeceraRecetaPostDTO
     {
-        public int IdRecetaMedica { get; set; }
-        public int? IdDetRecetaMedica { get; set; }
         public string? NombreDeClinica { get; set; }
         public DateTime? Fecha { get; set; }
     }
-    
+
 }

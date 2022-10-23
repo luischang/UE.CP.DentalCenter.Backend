@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[TRATAMIENTO]
 (
-	[idTratamiento] INT ,
+	[idTratamiento] INT IDENTITY NOT NULL,
 	[tipo] NVARCHAR(40),
 	[duracionDias] int,
 	[precio] FLOAT,

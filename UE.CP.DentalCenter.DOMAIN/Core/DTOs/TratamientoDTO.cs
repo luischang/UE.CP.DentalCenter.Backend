@@ -14,4 +14,11 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.DTOs
         public double? Precio { get; set; }
         public string? Descripcion { get; set; }
     }
+    public class TratamientoPostDTO
+    {
+        public string? Tipo { get; set; }
+        public int? DuracionDias { get; set; }
+        public double? Precio { get; set; }
+        public string? Descripcion { get; set; }
+    }
 }

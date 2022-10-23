@@ -10,7 +10,6 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.DTO_s
     public class CabeceraHistoriaCliDTO
     {
         public int IdHistoriaMedica { get; set; }
-        public int? IdDetHistoriaMedica { get; set; }
         public int? IdPaciente { get; set; }
         public DateTime? FechaDeActualizacion { get; set; }
 
@@ -18,12 +17,8 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.DTO_s
     }
     public class CabeceraHistoriaCliPostDTO
     {
-        public int IdHistoriaMedica { get; set; }
-        public int? IdDetHistoriaMedica { get; set; }
         public int? IdPaciente { get; set; }
         public DateTime? FechaDeActualizacion { get; set; }
-
-
     }
 
 }

@@ -23,7 +23,7 @@ namespace DentalCentelBacked.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CitaDTO cita)
+        public async Task<IActionResult> Create([FromBody] CitaPostDTO cita)
         {
             Cita citaM = mapper.Map<Cita>(cita);
             var result = await _citaRepository.Insert(citaM);

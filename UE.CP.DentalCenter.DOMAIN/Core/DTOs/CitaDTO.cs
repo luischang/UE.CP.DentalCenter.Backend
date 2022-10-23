@@ -14,4 +14,11 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.DTO_s
         public string? Estado { get; set; }
         public DateTime? FechaHora { get; set; }
     }
+    public class CitaPostDTO
+    {
+        public int? IdPaciente { get; set; }
+        public int? IdMedico { get; set; }
+        public string? Estado { get; set; }
+        public DateTime? FechaHora { get; set; }
+    }
 }

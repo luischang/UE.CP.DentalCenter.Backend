@@ -19,7 +19,7 @@ namespace UE.CP.DentalCenter.API.Controllers
             this.mapper = mapper;
         }
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] TratamientoDTO tratamiento)
+        public async Task<IActionResult> Create([FromBody] TratamientoPostDTO tratamiento)
         {
             Tratamiento tratamiento1 = mapper.Map<Tratamiento>(tratamiento);
            var result =  await _tratamientoRepository.Insert(tratamiento1);

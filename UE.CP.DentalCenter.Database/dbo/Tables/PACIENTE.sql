@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[PACIENTE]
 (
-	[idPaciente] INT ,
+	[idPaciente] INT IDENTITY NOT NULL,
 	[nombre] NVARCHAR(20),
 	[apellido] NVARCHAR(20),
 	[dni] int,

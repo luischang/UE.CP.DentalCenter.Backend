@@ -23,8 +23,19 @@ namespace DentalCentelBacked.Controllers
         }
 
 
+        [HttpPost("CabReceta")]
+        public async Task<IActionResult> CrearCabReceta(CabeceraRecetaPostDTO cabrecetaN)
+        {
+            CabRecetaMedica creceta = mapper.Map<CabRecetaMedica>(cabrecetaN);
+            var result = await _recetaRepository.InsertCabReceta(creceta);
 
-        [HttpPost("Receta")]
+            if (!result)
+            {
+                return BadRequest();
+            }
+            return Ok(result);
+        }
+        [HttpPost("DetReceta")]
         public async Task<IActionResult> CrearReceta(RecetaPostDTO recetaN)
         {
             DetRecetaMedica receta = mapper.Map<DetRecetaMedica>(recetaN);
@@ -37,18 +48,7 @@ namespace DentalCentelBacked.Controllers
             return Ok(result);
         }
 
-        [HttpPost("RecetaCabecera")]
-        public async Task<IActionResult> CrearCabReceta(CabeceraRecetaPostDTO cabrecetaN)
-        {
-            CabRecetaMedica creceta = mapper.Map<CabRecetaMedica>(cabrecetaN);
-            var result = await _recetaRepository.InsertCabReceta(creceta);
 
-            if (!result)
-            {
-                return BadRequest();
-            }
-            return Ok(result);
-        }
 
     }
 }

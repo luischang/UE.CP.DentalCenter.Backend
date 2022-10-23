@@ -28,7 +28,7 @@ namespace UE.CP.DentalCenter.API.Controllers
             return Ok(pacienteList);
         }
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody]PacienteDTO paciente)
+        public async Task<IActionResult> Create([FromBody]PacientePostDTO paciente)
         {
             Paciente pacienteF = _mapper.Map<Paciente>(paciente);
 

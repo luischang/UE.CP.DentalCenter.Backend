@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[PERSONAL_ADM]
 (
-	[idAsistente] INT ,
+	[idAsistente] INT IDENTITY NOT NULL,
 	[nombre] NVARCHAR(20),
 	[apellido] NVARCHAR(20),
 	[dni] int,

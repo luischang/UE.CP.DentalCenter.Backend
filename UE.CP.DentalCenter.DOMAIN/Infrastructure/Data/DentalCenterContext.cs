@@ -26,6 +26,7 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
         public virtual DbSet<DetHistoriaMedica> DetHistoriaMedica { get; set; } = null!;
         public virtual DbSet<DetMedico> DetMedico { get; set; } = null!;
         public virtual DbSet<DetRecetaMedica> DetRecetaMedica { get; set; } = null!;
+        public virtual DbSet<Especialidad> Especialidad { get; set; } = null!;
         public virtual DbSet<HorarioDisponible> HorarioDisponible { get; set; } = null!;
         public virtual DbSet<Medicamento> Medicamento { get; set; } = null!;
         public virtual DbSet<Paciente> Paciente { get; set; } = null!;
@@ -36,7 +37,8 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server = LAPTOP-UHECV48E; Database = DentalCenterV2; User = sa; Password = 123456789");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=LAPTOP-CHRISTOP;Database=DentalCenter;Integrated Security=true");
             }
         }
 
@@ -48,9 +50,7 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.ToTable("CAB_FACTURA");
 
-                entity.Property(e => e.IdFactura)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idFactura");
+                entity.Property(e => e.IdFactura).HasColumnName("idFactura");
 
                 entity.Property(e => e.FechaHora)
                     .HasColumnType("datetime")
@@ -58,16 +58,9 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.Property(e => e.IdCita).HasColumnName("idCita");
 
-                entity.Property(e => e.IdDetFactura).HasColumnName("idDetFactura");
-
                 entity.Property(e => e.IdPaciente).HasColumnName("idPaciente");
 
                 entity.Property(e => e.PrecioTotal).HasColumnName("precioTotal");
-
-                entity.HasOne(d => d.IdDetFacturaNavigation)
-                    .WithMany(p => p.CabFactura)
-                    .HasForeignKey(d => d.IdDetFactura)
-                    .HasConstraintName("FK_DET_FACTURA");
             });
 
             modelBuilder.Entity<CabHistoriaMedica>(entity =>
@@ -77,22 +70,13 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.ToTable("CAB_HISTORIA_MEDICA");
 
-                entity.Property(e => e.IdHistoriaMedica)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idHistoriaMedica");
+                entity.Property(e => e.IdHistoriaMedica).HasColumnName("idHistoriaMedica");
 
                 entity.Property(e => e.FechaDeActualizacion)
                     .HasColumnType("date")
                     .HasColumnName("fechaDeActualizacion");
 
-                entity.Property(e => e.IdDetHistoriaMedica).HasColumnName("idDetHistoriaMedica");
-
                 entity.Property(e => e.IdPaciente).HasColumnName("idPaciente");
-
-                entity.HasOne(d => d.IdDetHistoriaMedicaNavigation)
-                    .WithMany(p => p.CabHistoriaMedica)
-                    .HasForeignKey(d => d.IdDetHistoriaMedica)
-                    .HasConstraintName("FK_DET_HISTORIA_MEDICA");
 
                 entity.HasOne(d => d.IdPacienteNavigation)
                     .WithMany(p => p.CabHistoriaMedica)
@@ -106,9 +90,7 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.ToTable("CAB_MEDICO");
 
-                entity.Property(e => e.IdMedico)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idMedico");
+                entity.Property(e => e.IdMedico).HasColumnName("idMedico");
 
                 entity.Property(e => e.Apellido)
                     .HasMaxLength(20)
@@ -118,16 +100,9 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
                     .HasMaxLength(10)
                     .HasColumnName("genero");
 
-                entity.Property(e => e.IdDetMedico).HasColumnName("idDetMedico");
-
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(20)
                     .HasColumnName("nombre");
-
-                entity.HasOne(d => d.IdDetMedicoNavigation)
-                    .WithMany(p => p.CabMedico)
-                    .HasForeignKey(d => d.IdDetMedico)
-                    .HasConstraintName("FK_CAB_MEDICO");
             });
 
             modelBuilder.Entity<CabRecetaMedica>(entity =>
@@ -136,24 +111,15 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.ToTable("CAB_RECETA_MEDICA");
 
-                entity.Property(e => e.IdRecetaMedica)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idRecetaMedica");
+                entity.Property(e => e.IdRecetaMedica).HasColumnName("idRecetaMedica");
 
                 entity.Property(e => e.Fecha)
                     .HasColumnType("date")
                     .HasColumnName("fecha");
 
-                entity.Property(e => e.IdDetRecetaMedica).HasColumnName("idDetRecetaMedica");
-
                 entity.Property(e => e.NombreDeClinica)
                     .HasMaxLength(30)
                     .HasColumnName("nombreDeClinica");
-
-                entity.HasOne(d => d.IdDetRecetaMedicaNavigation)
-                    .WithMany(p => p.CabRecetaMedica)
-                    .HasForeignKey(d => d.IdDetRecetaMedica)
-                    .HasConstraintName("FK_CAB_RECETA_MEDICA");
             });
 
             modelBuilder.Entity<Cita>(entity =>
@@ -162,9 +128,7 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.ToTable("CITA");
 
-                entity.Property(e => e.IdCita)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idCita");
+                entity.Property(e => e.IdCita).HasColumnName("idCita");
 
                 entity.Property(e => e.Estado)
                     .HasMaxLength(30)
@@ -195,15 +159,21 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.ToTable("DET_FACTURA");
 
-                entity.Property(e => e.IdDetFactura)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idDetFactura");
+                entity.Property(e => e.IdDetFactura).HasColumnName("idDetFactura");
+
+                entity.Property(e => e.IdFactura).HasColumnName("idFactura");
 
                 entity.Property(e => e.IdRecetaMedica).HasColumnName("idRecetaMedica");
 
                 entity.Property(e => e.IdTratamiento).HasColumnName("idTratamiento");
 
                 entity.Property(e => e.Precio).HasColumnName("precio");
+
+                entity.HasOne(d => d.IdFacturaNavigation)
+                    .WithMany(p => p.DetFactura)
+                    .HasForeignKey(d => d.IdFactura)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DET_FACTURA_CAB_FACTURA");
 
                 entity.HasOne(d => d.IdRecetaMedicaNavigation)
                     .WithMany(p => p.DetFactura)
@@ -222,13 +192,13 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.ToTable("DET_HISTORIA_MEDICA");
 
-                entity.Property(e => e.IdDetHistoriaMedica)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idDetHistoriaMedica");
+                entity.Property(e => e.IdDetHistoriaMedica).HasColumnName("idDetHistoriaMedica");
 
                 entity.Property(e => e.IdAsistente).HasColumnName("idAsistente");
 
                 entity.Property(e => e.IdCita).HasColumnName("idCita");
+
+                entity.Property(e => e.IdHistoriaMedica).HasColumnName("idHistoriaMedica");
 
                 entity.Property(e => e.IdMedico).HasColumnName("idMedico");
 
@@ -245,8 +215,13 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
                 entity.HasOne(d => d.IdCitaNavigation)
                     .WithMany(p => p.DetHistoriaMedica)
                     .HasForeignKey(d => d.IdCita)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DET_HISTORIA_MEDICA_CITA");
+
+                entity.HasOne(d => d.IdHistoriaMedicaNavigation)
+                    .WithMany(p => p.DetHistoriaMedica)
+                    .HasForeignKey(d => d.IdHistoriaMedica)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DET_HISTORIA_MEDICA_CAB_HISTORIA_MEDICA");
 
                 entity.HasOne(d => d.IdMedicoNavigation)
                     .WithMany(p => p.DetHistoriaMedica)
@@ -257,13 +232,11 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
                 entity.HasOne(d => d.IdRecetaMedicaNavigation)
                     .WithMany(p => p.DetHistoriaMedica)
                     .HasForeignKey(d => d.IdRecetaMedica)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DET_HISTORIA_MEDICA_CAB_RECETA_MEDICA");
 
                 entity.HasOne(d => d.IdTratamientoNavigation)
                     .WithMany(p => p.DetHistoriaMedica)
                     .HasForeignKey(d => d.IdTratamiento)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DET_HISTORIA_MEDICA_TRATAMIENTO");
             });
 
@@ -273,13 +246,17 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.ToTable("DET_MEDICO");
 
-                entity.Property(e => e.IdDetMedico)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idDetMedico");
+                entity.Property(e => e.IdDetMedico).HasColumnName("idDetMedico");
 
-                entity.Property(e => e.Especialidad)
-                    .HasMaxLength(20)
-                    .HasColumnName("especialidad");
+                entity.Property(e => e.IdEspecialidad).HasColumnName("idEspecialidad");
+
+                entity.Property(e => e.IdMedico).HasColumnName("idMedico");
+
+                entity.HasOne(d => d.IdEspecialidadNavigation)
+                    .WithMany(p => p.DetMedico)
+                    .HasForeignKey(d => d.IdEspecialidad)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DET_MEDICO_ESPECIALIDAD");
             });
 
             modelBuilder.Entity<DetRecetaMedica>(entity =>
@@ -301,6 +278,8 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.Property(e => e.IdMedicamento).HasColumnName("idMedicamento");
 
+                entity.Property(e => e.IdRecetaMedica).HasColumnName("idRecetaMedica");
+
                 entity.Property(e => e.UnidadMedida)
                     .HasMaxLength(10)
                     .HasColumnName("unidadMedida");
@@ -309,6 +288,25 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
                     .WithMany(p => p.DetRecetaMedica)
                     .HasForeignKey(d => d.IdMedicamento)
                     .HasConstraintName("FK_DET_RECETA_MEDICA_MEDICAMENTO");
+
+                entity.HasOne(d => d.IdRecetaMedicaNavigation)
+                    .WithMany(p => p.DetRecetaMedica)
+                    .HasForeignKey(d => d.IdRecetaMedica)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DET_RECETA_MEDICA_CAB_RECETA_MEDICA}");
+            });
+
+            modelBuilder.Entity<Especialidad>(entity =>
+            {
+                entity.HasKey(e => e.IdEspecialidad);
+
+                entity.ToTable("ESPECIALIDAD");
+
+                entity.Property(e => e.IdEspecialidad).HasColumnName("idEspecialidad");
+
+                entity.Property(e => e.Descripcion)
+                    .HasMaxLength(50)
+                    .HasColumnName("descripcion");
             });
 
             modelBuilder.Entity<HorarioDisponible>(entity =>
@@ -327,6 +325,10 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.Property(e => e.HoraIni).HasColumnName("horaIni");
 
+                entity.Property(e => e.IdHorarioDisponible)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("idHorarioDisponible");
+
                 entity.Property(e => e.IdMedico).HasColumnName("idMedico");
 
                 entity.HasOne(d => d.IdMedicoNavigation)
@@ -339,13 +341,11 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
             modelBuilder.Entity<Medicamento>(entity =>
             {
                 entity.HasKey(e => e.IdMedicamento)
-                    .HasName("PK__MEDICAME__42B24C5849B321BD");
+                    .HasName("PK__MEDICAME__42B24C588F64C350");
 
                 entity.ToTable("MEDICAMENTO");
 
-                entity.Property(e => e.IdMedicamento)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idMedicamento");
+                entity.Property(e => e.IdMedicamento).HasColumnName("idMedicamento");
 
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(40)
@@ -364,9 +364,7 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.ToTable("PACIENTE");
 
-                entity.Property(e => e.IdPaciente)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idPaciente");
+                entity.Property(e => e.IdPaciente).HasColumnName("idPaciente");
 
                 entity.Property(e => e.Apellido)
                     .HasMaxLength(20)
@@ -399,9 +397,7 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.ToTable("PERSONAL_ADM");
 
-                entity.Property(e => e.IdAsistente)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idAsistente");
+                entity.Property(e => e.IdAsistente).HasColumnName("idAsistente");
 
                 entity.Property(e => e.Apellido)
                     .HasMaxLength(20)
@@ -424,9 +420,7 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.ToTable("TRATAMIENTO");
 
-                entity.Property(e => e.IdTratamiento)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idTratamiento");
+                entity.Property(e => e.IdTratamiento).HasColumnName("idTratamiento");
 
                 entity.Property(e => e.Descripcion)
                     .HasMaxLength(40)

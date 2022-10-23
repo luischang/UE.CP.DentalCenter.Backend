@@ -1,5 +1,7 @@
 ﻿CREATE TABLE [dbo].[DET_MEDICO](
-    [idDetMedico]   INT NOT NULL,
-    [especialidad]  NVARCHAR (20) NOT NULL, 
-    CONSTRAINT [PK_DET_MEDICO] PRIMARY KEY ([idDetMedico]),
+    [idDetMedico]   INT IDENTITY NOT NULL,
+    [idMedico] int Not null,
+    [idEspecialidad]  int NOT NULL, 
+    CONSTRAINT [PK_DET_MEDICO] PRIMARY KEY ([idDetMedico]), 
+    CONSTRAINT [FK_DET_MEDICO_ESPECIALIDAD] FOREIGN KEY ([idEspecialidad]) REFERENCES [ESPECIALIDAD]([idEspecialidad]),
 );

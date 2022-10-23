@@ -19,14 +19,24 @@ namespace UE.CP.DentalCenter.API.Controllers
             _cabMedicoRepository = cabMedicoRepository;
             _mapper = mapper;
         }
+        //[HttpGet("GetMedicosWithHorarioWithEspecialidad/All")]
+        //public async Task<IActionResult> GetMedicosWithHorarioWithEspecialidad()
+        //{
+        //    var medicos = await _cabMedicoRepository.GetMedicos();
+        //    var medicoList = _mapper.Map<List<MedicosConHorarioDTO>>(medicos);
+        //    if (medicos == null)
+        //        return NotFound();
+        //    return Ok(medicoList);
+        //}
         [HttpGet("All")]
         public async Task<IActionResult> GetAll()
         {
             var medicos = await _cabMedicoRepository.GetMedicos();
-            var medicoList = _mapper.Map<List<CabMedicoParaFiltroPacnteDTO>>(medicos);
+            var medicoList = _mapper.Map<List<CabMedicoDTO>>(medicos);
             if (medicos == null)
                 return NotFound();
             return Ok(medicoList);
         }
+
     }
 }

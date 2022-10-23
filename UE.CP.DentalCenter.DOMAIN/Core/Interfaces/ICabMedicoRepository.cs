@@ -5,5 +5,6 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Interfaces
     public interface ICabMedicoRepository
     {
         Task<IEnumerable<CabMedico>> GetMedicos();
+        //Task<IEnumerable<CabMedico>> GetMedicosWithEspecialidadWithHorario();
     }
 }

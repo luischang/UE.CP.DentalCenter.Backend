@@ -22,5 +22,10 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
             var medicos = await _context.CabMedico.ToListAsync();
             return medicos;
         }
+        //public async Task<IEnumerable<CabMedico>> GetMedicosWithEspecialidadWithHorario()
+        //{
+        //    var medicos = await _context.CabMedico.Include(x=>x.HorarioDisponible).ToListAsync();//Include(x=>x.Especialidad).
+        //    return medicos;
+        //}
     }
 }

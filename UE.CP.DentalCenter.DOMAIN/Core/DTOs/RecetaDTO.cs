@@ -17,7 +17,6 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.DTO_s
 
     public class RecetaPostDTO
     {
-        public int IdDetRecetaMedica { get; set; }
         public int? IdMedicamento { get; set; }
         public double? Dosis { get; set; }
         public string? UnidadMedida { get; set; }

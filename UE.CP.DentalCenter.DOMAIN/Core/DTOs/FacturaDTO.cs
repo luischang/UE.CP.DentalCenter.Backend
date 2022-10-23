@@ -13,4 +13,12 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.DTOs
         public int? IdRecetaMedica { get; set; }
         public double? Precio { get; set; }
     }
+    public class FacturaPostDTO
+    {
+        public int IdFactura { get; set; }
+        public int? IdTratamiento { get; set; }
+        public int? IdRecetaMedica { get; set; }
+        public double? Precio { get; set; }
+    }
+
 }

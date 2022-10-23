@@ -20,9 +20,19 @@ namespace UE.CP.DentalCenter.API.Controllers
             _mapper = mapper;
         }
 
+        [HttpPost("CabFactura")]
+        public async Task<IActionResult> CreateCabF([FromBody] CabFacturaPostDTO Cfact)
+        {
+            CabFactura cabFAc = _mapper.Map<CabFactura>(Cfact);
 
+            var result = await _facturaRepository.InsertCabF(cabFAc);
+
+            if (!result)
+                return BadRequest();
+            return Ok(result);
+        }
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] FacturaDTO fact)
+        public async Task<IActionResult> Create([FromBody] FacturaPostDTO fact)
         {
             DetFactura detFactura = _mapper.Map<DetFactura>(fact);
 
@@ -33,17 +43,7 @@ namespace UE.CP.DentalCenter.API.Controllers
             return Ok(result);
         }
 
-        [HttpPost("CabFactura")]
-        public async Task<IActionResult> CreateCabF([FromBody] CabFacturaDTO Cfact)
-        {
-            CabFactura cabFAc = _mapper.Map<CabFactura>(Cfact);
-
-            var result = await _facturaRepository.InsertCabF(cabFAc);
-
-            if (!result)
-                return BadRequest();
-            return Ok(result);
-        }
+        
 
 
 

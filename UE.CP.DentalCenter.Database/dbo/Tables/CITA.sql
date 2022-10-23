@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[CITA]
 (
-	[idCita] INT NOT NULL ,
+	[idCita] INT IDENTITY NOT NULL ,
 	[idPaciente] int,
 	[idMedico] int,
 	[estado] NVARCHAR(30),
