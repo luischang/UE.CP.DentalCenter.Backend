@@ -19,6 +19,6 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Entities
         public virtual CabMedico? IdMedicoNavigation { get; set; }
         public virtual Paciente? IdPacienteNavigation { get; set; }
         public virtual ICollection<DetHistoriaMedica> DetHistoriaMedica { get; set; }
-        public virtual ICollection<Paciente>? Pacientes { get; set; }
+       
     }
 }

@@ -13,15 +13,15 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
 {
     public class PacienteRepository : IPacienteRepository
     {
-        private readonly DentalCenterContext _context;
+        private readonly Data.DentalCenterContext _context;
         public PacienteRepository(DentalCenterContext context)
         {
             _context = context;
         }
         public async Task<IEnumerable<Paciente>> GetPacientes()
         {
-            var pacientes = await _context.Paciente.ToListAsync();
-            return pacientes;
+            var paciente = await _context.Paciente.ToListAsync();
+            return paciente;
         }
         public async Task<IEnumerable<Paciente>> GetPacienteByFrec(bool frec)//DevolverPacientePorBooleanFrecuente
         {
