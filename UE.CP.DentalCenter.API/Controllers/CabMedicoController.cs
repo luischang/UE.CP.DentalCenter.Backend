@@ -37,6 +37,24 @@ namespace UE.CP.DentalCenter.API.Controllers
                 return NotFound();
             return Ok(medicoList);
         }
+        [HttpGet("Id/Especialidad")]
+        public async Task<IActionResult> GetMedicosByIdEspecialidad(int id)
+        {
+            var medicos = await _cabMedicoRepository.GetMedicosByIdEspecialidad(id);
+            var medicoList = _mapper.Map<List<CabMedicoDTO>>(medicos);
+            if (medicos == null)
+                return NotFound();
+            return Ok(medicoList);
+        }
+        [HttpGet("Nombre/Especialidad")]
+        public async Task<IActionResult> GetMedicosByEspecialidad(string especialidad)
+        {
+            var medicos = await _cabMedicoRepository.GetMedicosByNombreEspecialidad(especialidad);
+            var medicoList = _mapper.Map<List<CabMedicoDTO>>(medicos);
+            if (medicos == null)
+                return NotFound();
+            return Ok(medicoList);
+        }
 
     }
 }

@@ -13,5 +13,6 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Entities
         public int? Estado { get; set; }
 
         public virtual CabMedico IdMedicoNavigation { get; set; } = null!;
+        public IEnumerable<CabMedico> nameMedico { get; set; }
     }
 }
