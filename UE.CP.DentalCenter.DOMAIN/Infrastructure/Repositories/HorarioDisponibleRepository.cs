@@ -19,14 +19,14 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
         }
         public async Task<IEnumerable<HorarioDisponible>> GetHorarioDisponibleById(int id)
         {
-            var horarios = await _context.HorarioDisponible.Where(x => x.IdMedico == id).ToListAsync();
+            var horarios = await _context.HorarioDisponible.Where(x => x.IdMedico == id).Where(y=>y.Estado==1).ToListAsync();
             if (horarios == null)
                 throw new Exception("Horarios no encontrados");
             return horarios;
         }
         public async Task<IEnumerable<HorarioDisponible>> GetHorarioDisponibleByDoctorId(int id)
         {
-            var horarios = await _context.HorarioDisponible.Where(x => x.IdMedico == id).ToListAsync();
+            var horarios = await _context.HorarioDisponible.Where(x => x.IdMedico == id).Where(y => y.Estado == 1).ToListAsync();
             if (horarios == null)
                 throw new Exception("Horarios no encontrados");
             return horarios;
@@ -37,7 +37,7 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
             List<HorarioDisponible> horarios = new List<HorarioDisponible>();
             foreach(var nombre in nombreMedicos)
             {
-                horarios.AddRange(await _context.HorarioDisponible.Where(x => x.IdMedico == nombre.IdMedico).ToListAsync());
+                horarios.AddRange(await _context.HorarioDisponible.Where(x => x.IdMedico.Equals(nombre.IdMedico)).Where(y => y.Estado == 1).ToListAsync());
             }
           
             return horarios;
