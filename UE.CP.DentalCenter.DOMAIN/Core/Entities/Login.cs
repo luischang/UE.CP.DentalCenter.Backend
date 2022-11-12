@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace UE.CP.DentalCenter.DOMAIN.Core.Entities
 {
-    public partial class DetMedico
+    public partial class Login
     {
-        public int IdDetMedico { get; set; }
+        public int Id { get; set; }
+        public string Usuario { get; set; } = null!;
+        public string Contraseña { get; set; } = null!;
         public int IdMedico { get; set; }
-        public int IdEspecialidad { get; set; }
 
-        public virtual Especialidad IdEspecialidadNavigation { get; set; } = null!;
         public virtual CabMedico IdMedicoNavigation { get; set; } = null!;
     }
 }
