@@ -59,6 +59,11 @@ namespace UE.CP.DentalCenter.DOMAIN.Infraestructura.Repositories
             return detHistorias;
         }
 
+        public async Task<IEnumerable<DetHistoriaMedica>> GetHisMedicaMedicoID(int Id)
+        {
+            var DetHistoriaMedica = await _context.DetHistoriaMedica.Where(x => x.IdMedico == Id).ToListAsync();
+            return DetHistoriaMedica;
+        }
 
 
 

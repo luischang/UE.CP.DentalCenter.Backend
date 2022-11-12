@@ -87,5 +87,17 @@ namespace DentalCentelBacked.Controllers
                 return NotFound();
             return Ok(DetalleHistoriaDTO);
         }
+        [HttpGet("idMedico")]
+        public async Task<IActionResult> GetDetallByIdMedico(int id)
+        {
+            var DetHistoria = await _historiaMedRepository.GetHisMedicaMedicoID(id);
+
+
+            var DetalleHistoriaDTO = mapper.Map<List<DetHistoTratamientoGetDTO>>(DetHistoria);
+            if (DetalleHistoriaDTO == null)
+                return NotFound();
+            return Ok(DetalleHistoriaDTO);
+        }
+
     }
 }
