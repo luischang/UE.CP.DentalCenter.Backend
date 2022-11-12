@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using UE.CP.DentalCenter.DOMAIN.Core.DTOs;
 using UE.CP.DentalCenter.DOMAIN.Core.Entities;
 using UE.CP.DentalCenter.DOMAIN.Core.Interfaces;
+using UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories;
 
 namespace UE.CP.DentalCenter.API.Controllers
 {
@@ -26,7 +27,17 @@ namespace UE.CP.DentalCenter.API.Controllers
             if (!result)
                 return BadRequest();
             return Ok(result);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAllTratamientos()
+        {
 
+            var tratamiento = await _tratamientoRepository.GetTratamientos();
+
+            var tratamientoList = mapper.Map<List<TratamientoDTO>>(tratamiento);
+
+
+            return Ok(tratamientoList);
         }
     }
 }
