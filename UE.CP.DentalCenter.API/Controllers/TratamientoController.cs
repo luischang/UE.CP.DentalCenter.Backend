@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UE.CP.DentalCenter.DOMAIN.Core.DTO_s;
 using UE.CP.DentalCenter.DOMAIN.Core.DTOs;
 using UE.CP.DentalCenter.DOMAIN.Core.Entities;
 using UE.CP.DentalCenter.DOMAIN.Core.Interfaces;
@@ -38,6 +39,29 @@ namespace UE.CP.DentalCenter.API.Controllers
 
 
             return Ok(tratamientoList);
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] TratamientoDTO iento)
+        {
+            if (id != iento.IdTratamiento)
+                return BadRequest("No concuerda la informacion del tratamiento");
+
+            var trat = mapper.Map<Tratamiento>(iento);
+
+            var result = await _tratamientoRepository.Update(trat);
+            if (!result)
+                return BadRequest("Ocurrió un problema al actualizar el tratamiento");
+            return Ok(result);
+
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _tratamientoRepository.Delete(id);
+            if (!result)
+                return BadRequest("Ocurrió un error al eliminar el tratamiento");
+
+            return Ok(result);
         }
     }
 }

@@ -28,5 +28,21 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
             var tratamientos = await _context.Tratamiento.ToListAsync();
             return tratamientos;
         }
+        public async Task<bool> Update(Tratamiento tratamiento)
+        {
+            _context.Tratamiento.Update(tratamiento);
+            var countRows = await _context.SaveChangesAsync();
+            return countRows > 0;
+        }
+        public async Task<bool> Delete(int id)
+        {
+            var tratamiento = await _context.Tratamiento.FindAsync(id);
+            if (tratamiento == null)
+                return false;
+
+            _context.Tratamiento.Remove(tratamiento);
+            var countRows = await _context.SaveChangesAsync();
+            return countRows > 0;
+        }
     }
 }
