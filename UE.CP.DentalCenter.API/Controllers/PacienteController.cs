@@ -72,5 +72,17 @@ namespace UE.CP.DentalCenter.API.Controllers
             return Ok(pacienteL);
         }
 
+        [HttpGet("Id")]
+        public async Task<IActionResult> GetPacienteId(int id)
+        {
+            var paciente = await _pacienteRepository.getPacienteById(id);
+            if (paciente == null)
+            {
+                return NotFound();
+            }
+            var pacienteList = _mapper.Map<PacienteDTO>(paciente);
+            return Ok(pacienteList);
+        }
+
     }
 }

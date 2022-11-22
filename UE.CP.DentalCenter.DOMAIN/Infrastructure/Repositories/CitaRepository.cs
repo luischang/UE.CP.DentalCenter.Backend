@@ -39,7 +39,7 @@ namespace UE.CP.DentalCenter.DOMAIN.Infraestructura.Repositories
         {
             var cita = await _context.Cita.Where(x => x.IdPaciente == id).FirstOrDefaultAsync();
             if (cita == null)
-                throw new Exception("Paciente not found");
+                throw new Exception("Cita not found");
             return cita;
         }
 
@@ -54,7 +54,15 @@ namespace UE.CP.DentalCenter.DOMAIN.Infraestructura.Repositories
         {
             var cita = await _context.Cita.Where(x => x.IdPaciente == id).ToListAsync();
             if (cita == null)
-                throw new Exception("Paciente not found");
+                throw new Exception("Cita not found");
+            return cita;
+        }
+
+        public async Task<IEnumerable<Cita>> GetListMedicoById(int id)
+        {
+            var cita = await _context.Cita.Where(x => x.IdMedico == id).ToListAsync();
+            if (cita == null)
+                throw new Exception("Cita not found");
             return cita;
         }
 

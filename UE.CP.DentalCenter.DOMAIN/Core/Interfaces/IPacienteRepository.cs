@@ -10,5 +10,6 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Interfaces
         Task<bool> Insert(Paciente paciente);
         Task<Paciente> getPacienteByNombre(string nombre);
         Task<Paciente> getPacienteByFecha(DateTime fecha);
+        Task<Paciente> getPacienteById(int id);
     }
 }

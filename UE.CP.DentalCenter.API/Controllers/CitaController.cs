@@ -67,6 +67,15 @@ namespace DentalCentelBacked.Controllers
                 return NotFound();
             return Ok(citaList);
         }
+        [HttpGet("CitaByDoctorId")]
+        public async Task<IActionResult> GetCitaByDoctorById(int id)
+        {
+            var cita = await _citaRepository.GetListMedicoById(id);
+            var citaList = mapper.Map<List<CitaDTO>>(cita);
+            if (citaList == null)
+                return NotFound();
+            return Ok(citaList);
+        }
 
 
     }

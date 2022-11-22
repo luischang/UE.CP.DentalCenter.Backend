@@ -60,5 +60,15 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
             return paciente;
         }
 
+        public async Task<Paciente> getPacienteById(int id)
+        {
+            var paciente = await _context.Paciente.Where(X => X.IdPaciente == id).FirstOrDefaultAsync();
+            /*if (customer == null)
+            {
+                throw new Exception("Customer not found");
+            }*/
+            return paciente;
+        }
+
     }
 }

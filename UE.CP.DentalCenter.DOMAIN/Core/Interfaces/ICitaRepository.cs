@@ -14,5 +14,6 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Interface
         Task<Cita> GetPacienteById(int id);
         Task<bool> Update(Cita cita);
         Task<IEnumerable<Cita>> GetListPacienteById(int id);
+        Task<IEnumerable<Cita>> GetListMedicoById(int id);
     }
 }
