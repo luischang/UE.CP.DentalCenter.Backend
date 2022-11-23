@@ -22,6 +22,7 @@ builder.Services.AddTransient<IPacienteRepository, PacienteRepository>();
 builder.Services.AddTransient<ITratamientoRepository, TratamientoRepository>();
 builder.Services.AddTransient<ICabMedicoRepository, CabMedicoRepository>();
 builder.Services.AddTransient<IHorarioDisponibleRepository, HorarioDisponibleRepository>();
+builder.Services.AddTransient<IEspecialidadRepository, EspecialidadRepository>();
 
 builder.Services.AddTransient<IRecetaRepository, RecetaRepository>();
 builder.Services.AddTransient<IHistoriaMedicaRepository, HistoriaMedicaRepository>();

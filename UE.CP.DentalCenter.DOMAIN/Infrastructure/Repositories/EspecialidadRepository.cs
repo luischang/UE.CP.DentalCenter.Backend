@@ -9,18 +9,17 @@ using UE.CP.DentalCenter.DOMAIN.Core.Interfaces;
 
 namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
 {
-    public class LoginRepository:ILoginRepository
+    public class EspecialidadRepository:IEspecialidadRepository
     {
         private readonly Data.DentalCenterContext _context;
-        public LoginRepository(Data.DentalCenterContext context)
+        public EspecialidadRepository(Data.DentalCenterContext context)
         {
             _context = context;
         }
-        public async Task<Login> GetLogin(string user, string password)
+        public async Task<IEnumerable<Especialidad>> GetEspecialidad()
         {
-            var login = await _context.Login.Where(x=>x.Usuario==user && x.Contraseña == password).FirstOrDefaultAsync();
-            
-            return login;
+            var especialidades = await _context.Especialidad.ToListAsync();
+            return especialidades;
         }
     }
 }
