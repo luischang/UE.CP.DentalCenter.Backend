@@ -22,10 +22,29 @@ namespace UE.CP.DentalCenter.API.Controllers
         public async Task<IActionResult> GetLogin([FromBody] LoginData log)
         {
             var loginDTO = await _loginRepository.GetLogin(log.Usuario, log.Contraseña);
-            var login = _mapper.Map<LoginGetShowDTO>(loginDTO);
-            if (login == null)
+            if (loginDTO == null)
                 return NotFound();
-            return Ok(login);
+            else
+            {
+                if (loginDTO.Tipo == "Medico")
+                {
+                    var login = _mapper.Map<LoginGetShowDTO>(loginDTO);
+                    return Ok(login);
+                }
+                else if (loginDTO.Tipo == "Paciente")
+                {
+                    var login = _mapper.Map<LoginGetPShowDTO>(loginDTO);
+
+                    return Ok(login);
+                }
+                else
+                {
+                    return Ok(loginDTO);
+                }
+            }
+            
+            
+            
         }
     }
 }

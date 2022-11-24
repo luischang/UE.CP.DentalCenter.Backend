@@ -9,6 +9,7 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Entities
         {
             CabHistoriaMedica = new HashSet<CabHistoriaMedica>();
             Cita = new HashSet<Cita>();
+            Login = new HashSet<Login>();
         }
 
         public int IdPaciente { get; set; }
@@ -22,5 +23,6 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Entities
 
         public virtual ICollection<CabHistoriaMedica> CabHistoriaMedica { get; set; }
         public virtual ICollection<Cita> Cita { get; set; }
+        public virtual ICollection<Login> Login { get; set; }
     }
 }

@@ -89,6 +89,8 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Mapping
             CreateMap<LoginDTO,Login>();
             CreateMap<Login, LoginGetShowDTO>();
             CreateMap<LoginGetShowDTO, Login>(); //LOGIN
+            CreateMap<Login, LoginGetPShowDTO>();
+            CreateMap<LoginGetPShowDTO, Login>();
 
         }
     }

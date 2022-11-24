@@ -349,13 +349,21 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
 
                 entity.Property(e => e.IdMedico).HasColumnName("idMedico");
 
+                entity.Property(e => e.IdPaciente).HasColumnName("idPaciente");
+
+                entity.Property(e => e.Tipo).HasMaxLength(15);
+
                 entity.Property(e => e.Usuario).HasMaxLength(50);
 
                 entity.HasOne(d => d.IdMedicoNavigation)
                     .WithMany(p => p.Login)
                     .HasForeignKey(d => d.IdMedico)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_IdMedico");
+
+                entity.HasOne(d => d.IdPacienteNavigation)
+                    .WithMany(p => p.Login)
+                    .HasForeignKey(d => d.IdPaciente)
+                    .HasConstraintName("FK_Login_PACIENTE");
             });
 
             modelBuilder.Entity<Medicamento>(entity =>
