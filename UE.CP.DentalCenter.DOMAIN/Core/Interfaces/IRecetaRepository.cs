@@ -12,6 +12,8 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Interface
     {
         Task<bool> InsertReceta(DetRecetaMedica receta);
         Task<bool> InsertCabReceta(CabRecetaMedica cabR);
-
+        Task<IEnumerable<DetRecetaMedica>> GetRecetas();
+        Task<IEnumerable<CabRecetaMedica>> GetCabRecetas();
+        Task<bool> DeleteReceta(int id);
     }
 }

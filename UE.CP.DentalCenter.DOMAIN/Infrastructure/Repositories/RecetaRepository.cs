@@ -32,5 +32,28 @@ namespace UE.CP.DentalCenter.DOMAIN.Infraestructura.Repositories
             var countRows = await _context.SaveChangesAsync();
             return countRows > 0;
         }
+
+        public async Task<IEnumerable<DetRecetaMedica>> GetRecetas()
+        {
+            var recetaMedicas = await _context.DetRecetaMedica.ToListAsync();
+            return recetaMedicas;
+        }
+        public async Task<IEnumerable<CabRecetaMedica>> GetCabRecetas()
+        {
+            var Cab_recetaMedicas = await _context.CabRecetaMedica.ToListAsync();
+            return Cab_recetaMedicas;
+        }
+
+        public async Task<bool> DeleteReceta(int id)
+        {
+            var receta = await _context.DetRecetaMedica.FindAsync(id);
+            if (receta == null)
+                return false;
+
+            _context.DetRecetaMedica.Remove(receta);
+            var countRows = await _context.SaveChangesAsync();
+            return countRows > 0;
+        }
+
     }
 }
