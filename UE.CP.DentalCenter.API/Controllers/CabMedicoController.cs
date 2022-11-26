@@ -55,6 +55,14 @@ namespace UE.CP.DentalCenter.API.Controllers
                 return NotFound();
             return Ok(medicoList);
         }
-
+        [HttpGet("id")]
+        public async Task<IActionResult> GetMedicosById(int id)
+        {
+            var medicos = await _cabMedicoRepository.GetMedicosById(id);
+            var medicoList = _mapper.Map<CabMedicoDTO>(medicos);
+            if (medicos == null)
+                return NotFound();
+            return Ok(medicoList);
+        }
     }
 }

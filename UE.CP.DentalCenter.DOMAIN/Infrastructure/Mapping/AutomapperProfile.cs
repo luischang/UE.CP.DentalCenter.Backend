@@ -23,7 +23,7 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Mapping
 
 
             CreateMap<CabMedico, CabMedicoDTO>();
-            CreateMap<CabMedicoDTO, CabMedico>();           
+            CreateMap<CabMedicoDTO, CabMedico>();
             CreateMap<CabMedico, CabMedicoParaFiltroPacnteDTO>();
             CreateMap<CabMedicoParaFiltroPacnteDTO, CabMedico>();
             CreateMap<DetMedico, DetMedicoDTO>();
@@ -65,7 +65,8 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Mapping
             CreateMap<DetHistoTratamientoPostDTO, DetHistoriaMedica>();//HISTORIA MEDICA
             CreateMap<DetHistoriaMedica, DetHistoriaPostDTO>();
             CreateMap<DetHistoriaPostDTO, DetHistoriaMedica>();
-
+            CreateMap<HistoriaMedicaDTO, CabHistoriaMedica>();
+            CreateMap<CabHistoriaMedica, HistoriaMedicaDTO>();
 
 
             CreateMap<CitaDTO, Cita>();

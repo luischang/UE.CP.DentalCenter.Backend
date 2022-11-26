@@ -99,5 +99,46 @@ namespace DentalCentelBacked.Controllers
             return Ok(DetalleHistoriaDTO);
         }
 
+        [HttpGet("CabHistoria/IdPaciente")]
+        public async Task<IActionResult> GetCabHistoriaByIdPaciente(int id)
+        {
+            var Cab_Historia = await _historiaMedRepository.GetCabHistoriaMedicaByIdPaciente(id);
+            
+
+
+            var Cab_HistoriaDTO = mapper.Map<List<HistoriaMedicaDTO>>(Cab_Historia);
+            if (Cab_HistoriaDTO == null)
+                return NotFound();
+            return Ok(Cab_HistoriaDTO);
+        }
+
+        [HttpGet("CabHistoria/Id")]
+        public async Task<IActionResult> GetCabHistoriaById(int id)
+        {
+            var Cab_Historia = await _historiaMedRepository.GetCabHistoriaMedicaById(id);
+
+            var Cab_HistoriaDTO = mapper.Map<List<HistoriaMedicaDTO>>(Cab_Historia);
+            if (Cab_HistoriaDTO == null)
+                return NotFound();
+            return Ok(Cab_HistoriaDTO);
+        }
+
+
+        [HttpGet("HistoriaMedica/IdPaciente")]
+        public async Task<IActionResult> GetHistoriaByIdPaciente(int id)
+        {
+            var CabHistoria = await _historiaMedRepository.GetCabHistoriaMedicaByIdPaciente(id);
+            List<DetHistoriaMedica> detHistoria = new List<DetHistoriaMedica>();
+            foreach(var xtem in CabHistoria)
+            {
+                detHistoria.AddRange(await _historiaMedRepository.GetHistoriaMedicaByIdcab(xtem.IdHistoriaMedica));
+            }
+
+            var HistoriaDTO = mapper.Map<List<DetHistoTratamientoGetDTO>>(detHistoria);
+            if (HistoriaDTO == null)
+                return NotFound();
+            return Ok(HistoriaDTO);
+        }
+
     }
 }

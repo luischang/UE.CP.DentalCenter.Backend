@@ -52,5 +52,11 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
             return medicosByEs;
         }
 
+        public async Task<CabMedico> GetMedicosById(int id)
+        {
+            var medico = await _context.CabMedico.Where(x=>x.IdMedico==id).FirstOrDefaultAsync();
+            return medico;
+        }
+
     }
 }

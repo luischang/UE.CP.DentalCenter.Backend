@@ -65,7 +65,22 @@ namespace UE.CP.DentalCenter.DOMAIN.Infraestructura.Repositories
             return DetHistoriaMedica;
         }
 
+        public async Task<IEnumerable<CabHistoriaMedica>> GetCabHistoriaMedicaByIdPaciente(int Id)
+        {
+            var cab_Historia = await _context.CabHistoriaMedica.Where(x => x.IdPaciente == Id).ToListAsync();
+            return cab_Historia;
+        }
+        public async Task<IEnumerable<DetHistoriaMedica>> GetHistoriaMedicaByIdcab(int Id)
+        {
+            var Historia = await _context.DetHistoriaMedica.Where(x => x.IdHistoriaMedica == Id).ToListAsync();
 
+            return Historia;
+        }
 
+        public async Task<IEnumerable<CabHistoriaMedica>> GetCabHistoriaMedicaById(int Id)
+        {
+            var cab_Historia = await _context.CabHistoriaMedica.Where(x => x.IdHistoriaMedica == Id).ToListAsync();
+            return cab_Historia;
+        }
     }
 }

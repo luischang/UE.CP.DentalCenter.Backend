@@ -15,5 +15,8 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Interface
         Task<IEnumerable<DetHistoriaMedica>> GetHisMedicaWithIdTramiento(int Id);
         Task<IEnumerable<DetHistoriaMedica>> GetHisMedicaNombreTramiento(string tr);
         Task<IEnumerable<DetHistoriaMedica>> GetHisMedicaMedicoID(int Id);
+        Task<IEnumerable<CabHistoriaMedica>> GetCabHistoriaMedicaByIdPaciente(int Id);
+        Task<IEnumerable<DetHistoriaMedica>> GetHistoriaMedicaByIdcab(int Id);
+        Task<IEnumerable<CabHistoriaMedica>> GetCabHistoriaMedicaById(int Id);
     }
 }

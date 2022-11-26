@@ -7,6 +7,7 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Interfaces
         Task<IEnumerable<CabMedico>> GetMedicos();
         Task<IEnumerable<CabMedico>> GetMedicosByIdEspecialidad(int id);
         Task<IEnumerable<CabMedico>> GetMedicosByNombreEspecialidad(string especialidad);
+        Task<CabMedico> GetMedicosById(int id);
 
         //Task<IEnumerable<CabMedico>> GetMedicosWithEspecialidadWithHorario();
     }
