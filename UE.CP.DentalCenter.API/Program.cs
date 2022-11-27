@@ -29,6 +29,7 @@ builder.Services.AddTransient<IHistoriaMedicaRepository, HistoriaMedicaRepositor
 builder.Services.AddTransient<ICitaRepository, CitaRepository>();
 builder.Services.AddTransient<IFacturaRepository, FacturaRepository>();
 builder.Services.AddTransient<ILoginRepository, LoginRepository>();
+builder.Services.AddTransient<IMedicamentoRepository, MedicamentoRepository>();
 
 
 var config = new MapperConfiguration(cfg =>
