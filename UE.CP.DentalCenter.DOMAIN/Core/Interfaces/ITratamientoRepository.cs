@@ -8,5 +8,7 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Interfaces
         Task<IEnumerable<Tratamiento>> GetTratamientos();
         Task<bool> Update(Tratamiento tratamiento);
         Task<bool> Delete(int id);
+        Task<IEnumerable<Tratamiento>> GetTratamientosById(int id);
+
     }
 }

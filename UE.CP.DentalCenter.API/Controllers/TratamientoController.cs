@@ -24,7 +24,7 @@ namespace UE.CP.DentalCenter.API.Controllers
         public async Task<IActionResult> Create([FromBody] TratamientoPostDTO tratamiento)
         {
             Tratamiento tratamiento1 = mapper.Map<Tratamiento>(tratamiento);
-           var result =  await _tratamientoRepository.Insert(tratamiento1);
+            var result = await _tratamientoRepository.Insert(tratamiento1);
             if (!result)
                 return BadRequest();
             return Ok(result);
@@ -39,6 +39,15 @@ namespace UE.CP.DentalCenter.API.Controllers
 
 
             return Ok(tratamientoList);
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetTratamientosById(int id)
+        {
+            var tratamientos = await _tratamientoRepository.GetTratamientosById(id);
+            var horariosList = mapper.Map<List<TratamientoDTO>>(tratamientos);
+            if (tratamientos == null)
+                return NotFound();
+            return Ok(horariosList);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] TratamientoDTO iento)

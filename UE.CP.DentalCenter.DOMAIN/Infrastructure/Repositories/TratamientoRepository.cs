@@ -28,6 +28,13 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
             var tratamientos = await _context.Tratamiento.ToListAsync();
             return tratamientos;
         }
+        public async Task<IEnumerable<Tratamiento>> GetTratamientosById(int id)
+        {
+            var tratamientos = await _context.Tratamiento.Where(x => x.IdTratamiento == id).ToListAsync();
+            if (tratamientos == null)
+                throw new Exception("Tratamientos no encontrados");
+            return tratamientos;
+        }
         public async Task<bool> Update(Tratamiento tratamiento)
         {
             _context.Tratamiento.Update(tratamiento);
