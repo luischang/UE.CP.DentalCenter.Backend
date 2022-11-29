@@ -21,7 +21,8 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Mapping
             CreateMap<Paciente, PacienteFrecuenteDTO>();
             CreateMap<PacienteFrecuenteDTO, Paciente>(); //PACIENTE
 
-
+            CreateMap<CabMedico, CabMedicoPostDTO>();
+            CreateMap<CabMedicoPostDTO, CabMedico>();
             CreateMap<CabMedico, CabMedicoDTO>();
             CreateMap<CabMedicoDTO, CabMedico>();
             CreateMap<CabMedico, CabMedicoParaFiltroPacnteDTO>();

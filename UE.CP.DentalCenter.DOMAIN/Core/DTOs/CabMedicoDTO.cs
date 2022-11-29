@@ -13,6 +13,12 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.DTOs
         public string? Apellido { get; set; }
         public string? Genero { get; set; }
     }
+    public class CabMedicoPostDTO
+    {
+        public string? Nombre { get; set; }
+        public string? Apellido { get; set; }
+        public string? Genero { get; set; }
+    }
     public class CabMedicoParaFiltroPacnteDTO
     {
         public int IdMedico { get; set; }

@@ -57,6 +57,28 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
             var medico = await _context.CabMedico.Where(x=>x.IdMedico==id).FirstOrDefaultAsync();
             return medico;
         }
+        public async Task<bool> InsertCabMedico(CabMedico cabM)//AñadirCabMedico
+        {
+            await _context.CabMedico.AddAsync(cabM);
+            var countRows = await _context.SaveChangesAsync();
+            return countRows > 0;
+        }
+        public async Task<bool> Delete(int id)
+        {
+            var medico = await _context.CabMedico.FindAsync(id);
+            if (medico == null)
+                return false;
+
+            _context.CabMedico.Remove(medico);
+            var countRows = await _context.SaveChangesAsync();
+            return countRows > 0;
+        }
+        public async Task<bool> Update(CabMedico cabMedico)
+        {
+            _context.CabMedico.Update(cabMedico);
+            var countRows = await _context.SaveChangesAsync();
+            return countRows > 0;
+        }
 
     }
 }

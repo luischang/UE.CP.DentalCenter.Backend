@@ -10,5 +10,8 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Interfaces
         Task<CabMedico> GetMedicosById(int id);
 
         //Task<IEnumerable<CabMedico>> GetMedicosWithEspecialidadWithHorario();
+        Task<bool> InsertCabMedico(CabMedico cabM);
+        Task<bool> Delete(int id);
+        Task<bool> Update(CabMedico cabMedico);
     }
 }
