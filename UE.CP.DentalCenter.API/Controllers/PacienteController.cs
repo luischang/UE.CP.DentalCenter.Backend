@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using UE.CP.DentalCenter.DOMAIN.Core.DTOs;
 using UE.CP.DentalCenter.DOMAIN.Core.Entities;
 using UE.CP.DentalCenter.DOMAIN.Core.Interfaces;
+using UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories;
 
 namespace UE.CP.DentalCenter.API.Controllers
 {
@@ -51,17 +52,17 @@ namespace UE.CP.DentalCenter.API.Controllers
             return Ok(pacienteList);
         }
 
-        [HttpGet("{nombre}")]
-        public async Task<IActionResult> GetPacienteNombre(string nombre)
-        {
-            var paciente = await _pacienteRepository.getPacienteByNombre(nombre);
-            if (paciente == null)
-            {
-                return NotFound();
-            }
-            var pacienteList = _mapper.Map<PacienteDTO>(paciente);
-            return Ok(pacienteList);
-        }
+        //[HttpGet("{nombre}")]
+        //public async Task<IActionResult> GetPacienteNombre(string nombre)
+        //{
+        //    var paciente = await _pacienteRepository.getPacienteByNombre(nombre);
+        //    if (paciente == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var pacienteList = _mapper.Map<PacienteDTO>(paciente);
+        //    return Ok(pacienteList);
+        //}
 
 
         [HttpGet("Fecha")]
@@ -72,16 +73,37 @@ namespace UE.CP.DentalCenter.API.Controllers
             return Ok(pacienteL);
         }
 
-        [HttpGet("Id")]
-        public async Task<IActionResult> GetPacienteId(int id)
+        [HttpGet("id")]
+        public async Task<IActionResult> GetPacientesById(int id)
         {
-            var paciente = await _pacienteRepository.getPacienteById(id);
-            if (paciente == null)
-            {
+            var pacientes = await _pacienteRepository.getPacienteById(id);
+            var pacienteList = _mapper.Map<PacienteDTO>(pacientes);
+            if (pacientes == null)
                 return NotFound();
-            }
-            var pacienteList = _mapper.Map<PacienteDTO>(paciente);
             return Ok(pacienteList);
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] PacienteDTO ente)
+        {
+            if (id != ente.IdPaciente)
+                return BadRequest("No concuerda la informacion del paciente");
+
+            var pac = _mapper.Map<Paciente>(ente);
+
+            var result = await _pacienteRepository.Update(pac);
+            if (!result)
+                return BadRequest("Ocurrió un problema al actualizar el paciente");
+            return Ok(result);
+
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _pacienteRepository.Delete(id);
+            if (!result)
+                return BadRequest("Ocurrió un error al eliminar el paciente");
+
+            return Ok(result);
         }
 
     }

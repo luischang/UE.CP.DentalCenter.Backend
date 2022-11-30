@@ -1,4 +1,5 @@
-﻿using UE.CP.DentalCenter.DOMAIN.Core.DTOs;
+﻿using Microsoft.EntityFrameworkCore;
+using UE.CP.DentalCenter.DOMAIN.Core.DTOs;
 using UE.CP.DentalCenter.DOMAIN.Core.Entities;
 
 namespace UE.CP.DentalCenter.DOMAIN.Core.Interfaces
@@ -11,5 +12,7 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Interfaces
         Task<Paciente> getPacienteByNombre(string nombre);
         Task<Paciente> getPacienteByFecha(DateTime fecha);
         Task<Paciente> getPacienteById(int id);
+        Task<bool> Update(Paciente paciente);
+        Task<bool> Delete(int id);
     }
 }
