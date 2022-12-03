@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using UE.CP.DentalCenter.DOMAIN.Core.DTOs;
 using UE.CP.DentalCenter.DOMAIN.Core.Entities;
 using UE.CP.DentalCenter.DOMAIN.Core.Interfaces;
+using UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories;
 
 namespace UE.CP.DentalCenter.API.Controllers
 {
@@ -18,7 +19,19 @@ namespace UE.CP.DentalCenter.API.Controllers
             _loginRepository = loginRepository;
             _mapper = mapper;
         }
-        [HttpPost()]
+        [HttpPost("crear")]
+        public async Task<IActionResult> Create([FromBody] LoginPacientePostDTO login)
+        {
+            Login loginF = _mapper.Map<Login>(login);
+
+            var result = await _loginRepository.Insert(loginF);
+
+            if (!result)
+                return BadRequest();
+            return Ok(result);
+        }
+
+        [HttpPost]
         public async Task<IActionResult> GetLogin([FromBody] LoginData log)
         {
             var loginDTO = await _loginRepository.GetLogin(log.Usuario, log.Contraseña);
@@ -42,9 +55,7 @@ namespace UE.CP.DentalCenter.API.Controllers
                     return Ok(loginDTO);
                 }
             }
-            
-            
-            
         }
+
     }
 }

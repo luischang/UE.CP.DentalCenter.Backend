@@ -10,5 +10,6 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Interfaces
     public interface ILoginRepository
     {
         Task<Login> GetLogin(string user, string password);
+        Task<bool> Insert(Login login);
     }
 }

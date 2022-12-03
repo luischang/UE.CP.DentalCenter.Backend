@@ -22,5 +22,11 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
             
             return login;
         }
+        public async Task<bool> Insert(Login login)
+        {
+            await _context.Login.AddAsync(login);
+            var countRows = await _context.SaveChangesAsync();
+            return countRows > 0;
+        }
     }
 }

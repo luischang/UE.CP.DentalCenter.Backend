@@ -15,6 +15,13 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.DTOs
         public int? IdPaciente { get; set; }
         public string? Tipo { get; set; }
     }
+    public class LoginPacientePostDTO
+    {
+        public string Usuario { get; set; } = null!;
+        public string Contraseña { get; set; } = null!;
+        public int? IdPaciente { get; set; }
+        public string? Tipo { get; set; }
+    }
     public class LoginData
     {
         public string Usuario { get; set; } = null!;

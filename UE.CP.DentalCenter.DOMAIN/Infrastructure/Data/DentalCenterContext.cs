@@ -364,6 +364,10 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Data
                     .WithMany(p => p.Login)
                     .HasForeignKey(d => d.IdPaciente)
                     .HasConstraintName("FK_Login_PACIENTE");
+                entity.HasOne(d => d.IdAsistenteNavigation)
+                    .WithMany(p => p.Login)
+                    .HasForeignKey(d => d.IdAsistente)
+                    .HasConstraintName("FK_Login_PersonalAdm");
             });
 
             modelBuilder.Entity<Medicamento>(entity =>
