@@ -29,6 +29,19 @@ namespace UE.CP.DentalCenter.API.Controllers
 
             return Ok(medL);
         }
+
+        [HttpGet("IdCabReceta")]
+        public async Task<IActionResult> GetMedicamentoIdCabReceta(int id)
+        {
+
+            var med = await medicamentoRepository.GetMedicamentosByCab(id);
+
+            var medL = _mapper.Map<List<MedicamentoDTO>>(med);
+
+
+            return Ok(medL);
+        }
+
     }
 
     

@@ -82,5 +82,6 @@ namespace UE.CP.DentalCenter.DOMAIN.Infraestructura.Repositories
             var cab_Historia = await _context.CabHistoriaMedica.Where(x => x.IdHistoriaMedica == Id).ToListAsync();
             return cab_Historia;
         }
+
     }
 }

@@ -22,5 +22,18 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
             var med = await _context.Medicamento.ToListAsync();
             return med;
         }
+        public async Task<IEnumerable<Medicamento>> GetMedicamentosByCab(int id)
+        {
+            var recetaMedicas = await _context.DetRecetaMedica.Where(x=>x.IdRecetaMedica==id).ToListAsync();
+            //var ListaMedicamento = await _context.Medicamento.ToListAsync();
+            List<Medicamento> medicamentos = new List<Medicamento>();
+            foreach(var item in recetaMedicas)
+            {
+                medicamentos.Add(await _context.Medicamento.Where(x => x.IdMedicamento == item.IdMedicamento).FirstOrDefaultAsync());
+            }
+            //var med = await _context.Medicamento.ToListAsync();
+            return medicamentos;
+        }
+
     }
 }

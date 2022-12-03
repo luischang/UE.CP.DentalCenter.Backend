@@ -62,6 +62,19 @@ namespace DentalCentelBacked.Controllers
 
 
         }
+        [HttpGet("UltimaCabReceta")]
+        public async Task<IActionResult> GetUltimaCabReceta()
+        {
+
+            var Cab_receta = await _recetaRepository.GetUltimaCabReceta();
+
+            var Cab_recetaList = mapper.Map<CabeceraRecetaDTO>(Cab_receta);
+
+            return Ok(Cab_recetaList);
+
+
+        }
+
 
         [HttpGet("Receta")]
         public async Task<IActionResult> GetRecetas()
@@ -75,6 +88,20 @@ namespace DentalCentelBacked.Controllers
 
 
         }
+        [HttpGet("Receta/idCab")]
+        public async Task<IActionResult> GetRecetasByIdCab(int id)
+        {
+
+            var receta = await _recetaRepository.GetRecetasByIdCab(id);
+
+            var recetaList = mapper.Map<List<RecetaDTO>>(receta);
+
+            return Ok(recetaList);
+
+
+        }
+
+
 
         [HttpDelete("Receta")]
         public async Task<IActionResult> DeleteReceta(int id)

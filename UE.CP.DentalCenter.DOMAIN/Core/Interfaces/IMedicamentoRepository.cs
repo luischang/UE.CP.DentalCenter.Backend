@@ -10,5 +10,6 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Interfaces
     public interface IMedicamentoRepository
     {
         Task<IEnumerable<Medicamento>> GetMedicamentoss();
+        Task<IEnumerable<Medicamento>> GetMedicamentosByCab(int id);
     }
 }

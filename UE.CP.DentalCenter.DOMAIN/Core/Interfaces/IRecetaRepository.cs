@@ -15,5 +15,7 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Interface
         Task<IEnumerable<DetRecetaMedica>> GetRecetas();
         Task<IEnumerable<CabRecetaMedica>> GetCabRecetas();
         Task<bool> DeleteReceta(int id);
+        Task<CabRecetaMedica> GetUltimaCabReceta();
+        Task<IEnumerable<DetRecetaMedica>> GetRecetasByIdCab(int id);
     }
 }
