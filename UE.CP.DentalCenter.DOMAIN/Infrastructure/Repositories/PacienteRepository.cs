@@ -30,6 +30,13 @@ namespace UE.CP.DentalCenter.DOMAIN.Infrastructure.Repositories
                 throw new Exception("Paciente no encontrado");
             return paciente;
         }
+        public async Task<IEnumerable<Paciente>> GetPacienteByCorreo(string correo)
+        {
+            var paciente = await _context.Paciente.Where(x => x.Correo == correo).ToListAsync();
+            if (paciente == null)
+                throw new Exception("Paciente no encontrado");
+            return paciente;
+        }
 
         public async Task<bool> Insert(Paciente paciente)//AñadirPaciente
         {

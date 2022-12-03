@@ -28,6 +28,15 @@ namespace UE.CP.DentalCenter.API.Controllers
                 return NotFound();
             return Ok(pacienteList);
         }
+        [HttpGet("correo")]
+        public async Task<IActionResult> GetPacienteByCorreo(string correo)
+        {
+            var pacientes = await _pacienteRepository.GetPacienteByCorreo(correo);
+            var pacienteList = _mapper.Map<List<PacienteFrecuenteDTO>>(pacientes);
+            if (pacientes == null)
+                return NotFound();
+            return Ok(pacienteList);
+        }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]PacientePostDTO paciente)
         {

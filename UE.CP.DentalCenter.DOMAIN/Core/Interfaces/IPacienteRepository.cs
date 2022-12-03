@@ -14,5 +14,6 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.Interfaces
         Task<Paciente> getPacienteById(int id);
         Task<bool> Update(Paciente paciente);
         Task<bool> Delete(int id);
+        Task<IEnumerable<Paciente>> GetPacienteByCorreo(string correo);
     }
 }
