@@ -20,6 +20,8 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.DTOs
         public string Usuario { get; set; } = null!;
         public string Contraseña { get; set; } = null!;
         public int? IdPaciente { get; set; }
+        public int? IdMedico { get; set; }
+        public int? IdAsistente { get; set; }
         public string? Tipo { get; set; }
     }
     public class LoginData
@@ -37,6 +39,12 @@ namespace UE.CP.DentalCenter.DOMAIN.Core.DTOs
     {
         public int? Id { get; set; }
         public int? IdPaciente { get; set; }
+        public string? Tipo { get; set; }
+    }
+    public class LoginGetAShowDTO
+    {
+        public int? Id { get; set; }
+        public int? IdAsistente { get; set; }
         public string? Tipo { get; set; }
     }
 }

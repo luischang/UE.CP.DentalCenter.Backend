@@ -50,6 +50,12 @@ namespace UE.CP.DentalCenter.API.Controllers
 
                     return Ok(login);
                 }
+                else if (loginDTO.Tipo == "Administrador")
+                {
+                    var login = _mapper.Map<LoginGetAShowDTO>(loginDTO);
+
+                    return Ok(login);
+                }
                 else
                 {
                     return Ok(loginDTO);
